@@ -1,0 +1,27 @@
+NPC Quest: 
+
+Setting:-: An open world little town/forest area, 3x3 or 4x4?
+
+Layout:-: Top down zelda/pokemon/earthbound style movement
+
+Mechanic:-:
+	-You are a protagonist who is an apprentice NPC
+	-When talking to NPCs, you initiate dialogue with your current phrase 
+		-("..." at beginning)
+	-When NPCs respond, whatever they respond with becomes your current phrase
+
+Goal:-: To collect the artifacts of speech and fight the NPC dialogue boss?
+	1- Press A to copy, press B to ignore
+	2- Increase your memory to up to two phrases
+	3- 
+
+Themes:-: Solipsism, Memetic Transmission, Communication and Loneliness
+
+Examples:-:
+
+1. Enter the church culthouse
+	"..." -> @"You must say the password to enter." -> (A)
+	"You must say the password to enter." -> ~"What the hell is the password?" -> (B)
+	"You must say the password to enter." -> $"The password is 'defeat'"-> (A)
+	"The password is 'defeat'" -> @"You may enter." -> (B)
+	
