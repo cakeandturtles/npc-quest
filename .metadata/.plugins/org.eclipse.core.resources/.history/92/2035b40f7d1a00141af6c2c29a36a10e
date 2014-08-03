@@ -1,0 +1,6 @@
+package entities;
+
+public class NPC extends GameMover{
+	public NPC(float x, float y, int npc_id){
+	}
+}

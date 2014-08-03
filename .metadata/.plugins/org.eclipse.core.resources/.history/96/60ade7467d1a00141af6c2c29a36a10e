@@ -1,0 +1,13 @@
+package entities;
+
+public class NPC extends GameMover{
+	public int npc_id;
+	
+	public NPC(float x, float y, int npc_id){
+		super(x, y, 2, 2, 14, 14, "npc_sheet");
+		this.npc_id = npc_id;
+		
+		animation.abs_ani_y = 2*npc_id;
+		animation.Change(0, 2*npc_id, 2);
+	}
+}

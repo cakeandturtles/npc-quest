@@ -1,0 +1,24 @@
+package Managers;
+
+import java.awt.event.KeyEvent;
+import java.util.HashMap;
+
+public class KeyManager {
+	public HashMap<Integer, Boolean> keys_down;
+	public HashMap<Integer, Boolean> keys_pressed;
+	public HashMap<Integer, Boolean> keys_have_pressed;
+	public HashMap<Integer, Boolean> keys_up;
+	
+	public KeyManager(){
+		keys_down = new HashMap<Integer, Boolean>();
+		keys_pressed = new HashMap<Integer, Boolean>();
+		keys_have_pressed = new HashMap<Integer, Boolean>();
+		keys_up = new HashMap<Integer, Boolean>();
+	}
+	
+	public void KeyDown(KeyEvent e){
+		keys_down.put(e.getKeyCode(), true);
+		if (!keys_have_pressed.get(e.getKeyCode()){
+		}
+	}
+}

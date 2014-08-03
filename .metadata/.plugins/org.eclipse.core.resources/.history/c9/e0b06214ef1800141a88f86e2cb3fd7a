@@ -1,0 +1,14 @@
+import javax.swing.JFrame;
+
+public class Main extends JFrame{	
+	public static void main(String[] args){
+add(new Window());
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(280,240);
+		setLocationRelativeTo(null);
+		setTitle("Star III: The happening");
+		setResizable(false);
+		setVisible(true);
+	}
+}

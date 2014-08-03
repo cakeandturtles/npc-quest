@@ -1,0 +1,89 @@
+package entities;
+
+import npcquest.Tuple;
+import Levels.Room;
+
+public class NPC extends GameMover{
+	public int npc_id;
+	public int lastspeech_id = -1;
+	public boolean speaking = false;
+	public boolean fade_away = false;
+	
+	public NPC(float x, float y, int npc_id){
+		super(x, y, 2, 2, 14, 14, "npc_sheet");
+		type = "NPC";
+		solid = true;
+		this.npc_id = npc_id;
+		
+		animation.abs_ani_y = 2*npc_id*animation.frame_height;
+	}
+	
+	public NPC(float x, float y, int npc_id, String img_name){
+		super(x, y, 2, 2, 14, 14, img_name);
+		type = "NPC";
+		solid = true;
+		this.npc_id = npc_id;
+		
+		animation.abs_ani_y = 2*npc_id*animation.frame_height;
+	}
+	
+	public void ChangeNPC_ID(int npc_id){
+		this.npc_id = npc_id;
+		animation.abs_ani_y = 2*npc_id*animation.frame_height;
+	}
+	
+	@Override
+	public void Update(Room room){
+		if (fade_away){
+			opacity-=0.02f;
+			if (opacity < 0.0f){
+				room.StopSpeaking();
+				visible = false;
+				delete_me = true;
+			}
+		}
+		super.Update(room);
+	}
+	
+	public int Speak(Room room, int iid){
+		speaking = true;
+		Tuple<String, Integer> speech = GetSpeech(iid);
+		room.Speak(speech.x, npc_id, (type == "Player"));
+		return speech.y;
+	}
+	
+	public void StopSpeaking(Room room){
+		speaking = false;
+		room.StopSpeaking();
+	}
+	
+	public Tuple<String, Integer> GetSpeech(int initiator_id){
+		if (initiator_id == lastspeech_id)
+			return "Stop copying me!";
+		
+		switch (npc_id){
+			case 0:
+				return "...";
+			case 1:
+				switch (iid){
+					case 0:
+						return "What do you want?!";
+					case 1:
+						return "Stop copying me!";
+					case 2:
+						return "...Thank you...";
+				}
+			case 2:
+				switch (iid){
+					case 0:
+						return "I know what I want.";
+					case 1:
+						return "A kiss from the pox wart!";
+					case 2:
+						return "Stop copying me!";
+				}
+			default:
+				return "undefined";
+		}
+	}
+}

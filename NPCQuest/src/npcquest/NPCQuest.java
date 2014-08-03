@@ -3,9 +3,12 @@ package npcquest;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 
+import Levels.World;
 import Managers.KeyManager;
 
 @SuppressWarnings("serial")
@@ -17,6 +20,8 @@ public class NPCQuest extends JFrame{
 	public static Color COLOR_ONE;
 	public static Color COLOR_TWO;
 	public static Color COLOR_THREE;
+	
+	public static boolean level_edit = true;
 	
 	public NPCQuest(){
 		this.addKeyListener(new KeyListener(){
@@ -35,6 +40,22 @@ public class NPCQuest extends JFrame{
 				KeyManager.KeyTyped(e);
 			}
 		});
+		if (level_edit){
+			this.addMouseListener(new MouseListener(){
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					World.MouseClicked(e);
+				}
+				@Override
+				public void mouseEntered(MouseEvent e) {}
+				@Override
+				public void mouseExited(MouseEvent e) {}
+				@Override
+				public void mousePressed(MouseEvent e) {}
+				@Override
+				public void mouseReleased(MouseEvent e) {}
+			});
+		}
 		add(new GameWindow());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

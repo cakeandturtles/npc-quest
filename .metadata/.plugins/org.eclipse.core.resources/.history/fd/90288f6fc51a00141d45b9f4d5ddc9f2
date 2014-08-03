@@ -1,0 +1,86 @@
+package entities;
+
+import Levels.Room;
+
+public class NPC extends GameMover{
+	public int npc_id;
+	public String whatdidisay = "";
+	public boolean speaking = false;
+	public boolean fade_away = false;
+	
+	public NPC(float x, float y, int npc_id){
+		super(x, y, 2, 2, 14, 14, "npc_sheet");
+		type = "NPC";
+		solid = true;
+		this.npc_id = npc_id;
+		
+		animation.abs_ani_y = 2*npc_id*animation.frame_height;
+	}
+	
+	public NPC(float x, float y, int npc_id, String img_name){
+		super(x, y, 2, 2, 14, 14, img_name);
+		type = "NPC";
+		solid = true;
+		this.npc_id = npc_id;
+		
+		animation.abs_ani_y = 2*npc_id*animation.frame_height;
+	}
+	
+	public void ChangeNPC_ID(int npc_id){
+		this.npc_id = npc_id;
+		animation.abs_ani_y = 2*npc_id*animation.frame_height;
+	}
+	
+	@Override
+	public void Update(Room room){
+		if (fade_away){
+			opacity-=0.02f;
+			if (opacity < 0.0f){
+				room.StopSpeaking();
+				visible = false;
+				delete_me = true;
+			}
+		}
+		super.Update(room);
+	}
+	
+	public void Speak(Room room, String initiator){
+		speaking = true;
+		String speech = GetSpeech(initiator);
+		whatdidisay = speech;
+		room.Speak(speech, npc_id, (type == "Player"));
+	}
+	
+	public void StopSpeaking(Room room){
+		speaking = false;
+		room.StopSpeaking();
+	}
+	
+	public String GetSpeech(String initiator){
+		switch (npc_id){
+			case 0:
+				return "...";
+			case 1:
+				return PoxWartSpeak(initiator);
+			case 2:
+				return TreeSpeak(initiator);
+			default:
+				return "undefined";
+		}
+	}
+	
+	public String PoxWartSpeak(String initiator){
+		if (initiator.equals("A kiss from the pox wart!"))
+			return "...Thank you...";
+		
+		return "What do you want?!";
+	}
+	
+	public String TreeSpeak(String initiator){
+		if (initiator.equals("What do you want?!"))
+			return "A kiss from the pox wart...";
+		
+
+		return "I know what I want.";
+	}
+}

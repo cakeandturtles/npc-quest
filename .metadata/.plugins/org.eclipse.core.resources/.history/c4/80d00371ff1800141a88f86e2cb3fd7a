@@ -1,0 +1,9 @@
+package entities.helpers;
+
+public class Animation {
+	int max_frame;
+	int frame_count;
+	int frame_delay;
+	int frame_width;
+	int frame_height;
+}

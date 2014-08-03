@@ -1,0 +1,5 @@
+package Managers;
+
+public class KeyManager {
+	public ArrayList<Integer> keys_down;
+}

@@ -1,0 +1,73 @@
+package entities;
+
+import Levels.Room;
+
+public class NPC extends GameMover{
+	public int npc_id;
+	public boolean speaking = false;
+	public boolean fade_away = false;
+	
+	public NPC(float x, float y, int npc_id){
+		super(x, y, 2, 2, 14, 14, "npc_sheet");
+		type = "NPC";
+		solid = true;
+		this.npc_id = npc_id;
+		
+		animation.abs_ani_y = 2*npc_id*animation.frame_height;
+	}
+	
+	public NPC(float x, float y, int npc_id, String img_name){
+		super(x, y, 2, 2, 14, 14, img_name);
+		type = "NPC";
+		solid = true;
+		this.npc_id = npc_id;
+		
+		animation.abs_ani_y = 2*npc_id*animation.frame_height;
+	}
+	
+	public void ChangeNPC_ID(int npc_id){
+		this.npc_id = npc_id;
+		animation.abs_ani_y = 2*npc_id*animation.frame_height;
+	}
+	
+	@Override
+	public void Update(Room room){
+		if (fade_away){
+			opacity-=0.02f;
+			if (opacity < 0.0f){
+				room.StopSpeaking();
+				visible = false;
+				delete_me = true;
+			}
+		}
+		super.Update(room);
+	}
+	
+	public void Speak(Room room, int iid){
+		speaking = true;
+		room.Speak(GetSpeech(iid), npc_id, (type == "Player"));
+	}
+	
+	public void StopSpeaking(Room room){
+		speaking = false;
+		room.StopSpeaking();
+	}
+	
+	public String GetSpeech(int iid){
+		switch (npc_id){
+			case 0:
+				return "...";
+			case 1:
+				switch (iid){
+					case 0:
+						return "What do you want?!";
+					case 1:
+						return "Stop copying me!";
+				}
+			case 2:
+				return "I know what the pox wart wants.";
+			default:
+				return "undefined";
+		}
+	}
+}

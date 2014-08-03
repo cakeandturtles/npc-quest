@@ -1,0 +1,32 @@
+package Levels;
+
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+
+import entities.GameMover;
+
+public class Room {
+	public ArrayList<ArrayList<Tile>> tiles;
+	public Camera camera;
+	public static final int MAP_WIDTH = NPCQuest.GAME_WIDTH / Tile.WIDTH;
+
+	private GameMover player;
+	
+	public Room(){
+		camera = new Camera();
+
+		player = new GameMover(16, 16, 0, 0, 16, 16, "npc_sheet");
+	}
+	
+	public boolean isValidTile(int i, int j){
+		return true;
+	}
+	
+	public void Update(){
+		player.Update(this);
+	}
+	
+	public void Render(Graphics2D g2d){
+		player.Render(g2d, camera);
+	}
+}

@@ -1,0 +1,26 @@
+package Levels;
+
+import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import npcquest.NPCQuest;
+
+public class World {
+	public static Room room;
+	
+	public static void init(){
+		room = new Room();
+	}
+	
+	public static void Update(){
+		room.Update();
+	}
+	
+	public static void Render(Graphics2D g2d){
+		room.Render(g2d);
+	}
+
+	public static void MouseClicked(MouseEvent e){
+		int tilex = e.getX() / (NPCQuest.VIEW_SCALE*Tile.WIDTH);
+		int tiley = (e.getY()-26) / (NPCQuest.VIEW_SCALE*Tile.HEIGHT); 
+	}
+}

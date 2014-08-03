@@ -1,0 +1,16 @@
+package entities.npc;
+
+import Levels.Room;
+import entities.NPC;
+
+public class PoxWart extends NPC{
+	public PoxWart(float x, float y){
+		super(x, y, 1);
+	}
+	
+	@Override
+	public void StopSpeaking(Room room){
+		speaking = false;
+		room.StopSpeaking();
+	}
+}

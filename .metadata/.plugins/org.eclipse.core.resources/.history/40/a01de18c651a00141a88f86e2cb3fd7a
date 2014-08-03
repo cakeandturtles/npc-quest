@@ -1,0 +1,8 @@
+package Managers;
+
+import java.awt.Image;
+import java.util.Map;
+
+public class ResourceManager {
+	public static Map<String, Image> images;
+}

@@ -5,13 +5,12 @@ import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import javax.swing.JPanel;
 
-import Levels.Room;
+import Levels.World;
 import Managers.KeyManager;
 import Managers.ResourceManager;
 
 @SuppressWarnings("serial")
 public class GameWindow extends JPanel implements Runnable{
-	private Room room;
 	private Thread animator;
 	
 	private final int DELAY = 30;
@@ -22,7 +21,7 @@ public class GameWindow extends JPanel implements Runnable{
 		
 		KeyManager.init();
 		ResourceManager.init();
-		room = new Room();
+		World.init();
 	}
 	
 	public void addNotify(){
@@ -36,13 +35,13 @@ public class GameWindow extends JPanel implements Runnable{
 		
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.scale(NPCQuest.VIEW_SCALE, NPCQuest.VIEW_SCALE);
-		room.Render(g2d);
+		World.Render(g2d);
 		Toolkit.getDefaultToolkit().sync();
 		g.dispose();
 	}
 	
 	public void cycle(){
-		room.Update();
+		World.Update();
 	}
 	
 	public void run(){

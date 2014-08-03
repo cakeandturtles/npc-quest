@@ -1,0 +1,23 @@
+package Managers;
+
+import Levels.Room;
+
+public class InputManager {
+	public static void Update(Room room){
+		//ARROW KEY MANAGEMENT
+		if (KeyManager.keys_down.containsKey(KeyManager.RIGHT)){
+			room.player.MoveRight();
+		}else if (KeyManager.keys_down.containsKey(KeyManager.LEFT)){
+			room.player.MoveLeft();
+		}
+		if (KeyManager.keys_down.containsKey(KeyManager.DOWN)){
+			room.player.MoveDown();
+		}else if (KeyManager.keys_down.containsKey(KeyManager.UP)){
+			room.player.MoveUp();
+		}
+		
+		if (KeyManager.keys_pressed.containsKey(KeyManager.A)){
+			room.player.Interact();
+		}
+	}
+}

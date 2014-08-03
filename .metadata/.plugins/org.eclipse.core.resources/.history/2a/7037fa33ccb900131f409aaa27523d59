@@ -1,0 +1,16 @@
+package com.meow.kittypaintdev.server;
+
+import java.awt.Image;
+
+public class BrushObj {
+	Image img;
+	String name;
+	int size;
+	Image[] sized_images;
+	String type;
+	boolean loaded;
+	
+	public BrushObj(Image img, String name, int size, String type){
+		
+	}
+}

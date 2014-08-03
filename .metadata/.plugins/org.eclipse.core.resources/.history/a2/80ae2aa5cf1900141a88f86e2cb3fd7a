@@ -1,0 +1,5 @@
+package Levels;
+
+public class Tile {
+	public static final int WIDTH = 16;
+}

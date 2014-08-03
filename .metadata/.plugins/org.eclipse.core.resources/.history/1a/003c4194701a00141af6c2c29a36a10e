@@ -1,0 +1,43 @@
+package Levels;
+
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+
+import npcquest.NPCQuest;
+
+import entities.GameMover;
+
+public class Room {
+	public int MAP_WIDTH;
+	public int MAP_HEIGHT;
+	public Camera camera;
+	public String tilesheet_name = "tilesheet";
+	public String spoken_text = "";
+	public int speech_timer = 0;
+	public int speech_time_limit = 0;
+	
+	public ArrayList<ArrayList<Tile>> tiles;
+
+	private GameMover player;
+	
+	public Room(){
+		MAP_WIDTH = NPCQuest.GAME_WIDTH / Tile.WIDTH;
+		camera = new Camera();
+		tilesheet_name = "tilesheet";
+		
+
+		player = new GameMover(16, 16, 0, 0, 16, 16, "npc_sheet");
+	}
+	
+	public boolean isValidTile(int i, int j){
+		return true;
+	}
+	
+	public void Update(){
+		player.Update(this);
+	}
+	
+	public void Render(Graphics2D g2d){
+		player.Render(g2d, camera);
+	}
+}

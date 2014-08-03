@@ -1,0 +1,7 @@
+package Managers;
+
+import java.util.ArrayList;
+
+public class KeyManager {
+	public ArrayList<Integer> keys_down;
+}

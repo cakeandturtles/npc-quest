@@ -1,0 +1,19 @@
+package com.meow.kittypaintdev.server;
+
+import java.awt.image.BufferedImage;;
+
+public class DrawrServerChunk {
+	int numx;
+	int numy;
+	
+	public DrawrServerChunk(DrawrServerMap drawr_map, int numx, int numy){
+		//Create image not canvas
+		int size = drawr_map.chunk_block_size;
+		BufferedImage img = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
+		
+		this.numx = numx;
+		this.numy = numy;
+	}
+	
+	public void addPoint(int local_x, int local_y)
+}

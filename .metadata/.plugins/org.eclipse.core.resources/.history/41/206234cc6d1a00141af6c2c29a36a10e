@@ -1,0 +1,16 @@
+package Levels;
+
+import java.util.ArrayList;
+
+public class Room {
+	public ArrayList<ArrayList<Tile>> tiles;
+	public Camera camera;
+	
+	public Room(){
+		camera = new Camera();
+	}
+	
+	public boolean isValidTile(int i, int j){
+		return true;
+	}
+}

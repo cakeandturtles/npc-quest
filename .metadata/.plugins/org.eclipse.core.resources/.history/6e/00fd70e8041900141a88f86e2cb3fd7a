@@ -1,0 +1,7 @@
+package Levels;
+
+public class Camera {
+	float x;
+	float y;
+
+}

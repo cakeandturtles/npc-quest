@@ -1,0 +1,6 @@
+package Managers;
+
+public class InputManager {
+	public static void InputManager(Room room){
+	}
+}

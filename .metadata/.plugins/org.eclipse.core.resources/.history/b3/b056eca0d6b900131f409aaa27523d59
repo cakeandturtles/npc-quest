@@ -1,0 +1,17 @@
+package com.meow.kittypaintdev.server;
+
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+
+public class DrawrBrushes {
+	public BufferedImage setImageColor(BufferedImage img, int size, int r, int g, int b){
+		byte[] pixels = ((DataBufferByte) img.getRaster().getDataBuffer()).getData();
+		for (int i = 0; i < pixels.length; i+=4){
+			//pixels[i] = pixels[i]; //alpha
+			pixels[i+1] = (byte)b; //blue
+			pixels[i+2] = (byte)g; //green
+			pixels[i+3] = (byte)r; // red
+		}
+		BufferedImage imgnew = new BufferedImage();
+	}
+}

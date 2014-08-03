@@ -1,0 +1,114 @@
+package Levels;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.util.ArrayList;
+
+import Managers.InputManager;
+import Managers.ResourceManager;
+
+import npcquest.NPCQuest;
+
+import entities.GameMover;
+import entities.GameObject;
+import entities.NPC;
+
+public class Room {
+	public int MAP_WIDTH;
+	public int MAP_HEIGHT;
+	public Camera camera;
+	public String spoken_text = "";
+	public int speech_timer = 0;
+	public int speech_time_limit = 0;
+	
+	public String tilesheet_name = "tilesheet";
+	public ArrayList<ArrayList<Tile>> tiles;
+
+	public GameMover player;
+	public ArrayList<GameObject> entities;
+	
+	public Room(){
+		MAP_WIDTH = NPCQuest.GAME_WIDTH / Tile.WIDTH;
+		camera = new Camera();
+		
+		player = new GameMover(16, 16, 0, 0, 16, 16, "npc_sheet");
+		entities = new ArrayList<GameObject>();
+		entities.add(new NPC(48, 16, 1));
+		InitializeTiles();
+	}
+	
+	public void InitializeTiles(){
+		tiles = new ArrayList<ArrayList<Tile>>();
+		for (int i = 0; i < MAP_HEIGHT; i++){
+			tiles.add(new ArrayList<Tile>());
+			for (int j = 0; j < MAP_WIDTH; j++){
+				tiles.get(i).add(new Tile(j * Tile.WIDTH, i * Tile.HEIGHT, Tile.GHOST, 0, 0));
+			}
+		}
+	}
+	
+	public boolean isValidTile(int i, int j){
+		System.out.println(i + ", " + j + ", " + tiles.size() + ", " + tiles.get(i).size());
+		return !(i < 0 || i >= tiles.size() || j < 0 || j >= tiles.get(i).size());
+	}
+	
+	public void Update(){
+		InputManager.Update(this);
+		player.Update(this);
+		camera.Update(this);
+		for (int i = 0; i < entities.size(); i++){
+			entities.get(i).Update(this);
+		}
+		for (int i = entities.size()-1; i >= 0; i--){
+			if (entities.get(i).delete_me)
+				entities.remove(i);
+		}
+	}
+	
+	public void Render(Graphics2D g2d){
+		g2d.setBackground(Color.getHSBColor(312, 76, 225));
+		g2d.clearRect(0, 0, NPCQuest.GAME_WIDTH, NPCQuest.GAME_HEIGHT);
+		
+		for (int i = 0; i < entities.size(); i++){
+			entities.get(i).Render(g2d, camera);
+		}
+		player.Render(g2d, camera);
+		
+		//DRAW THE TILES OF THE ROOM
+		int left_tile = (int)Math.floor((camera.x - 1) / Tile.WIDTH);
+		int right_tile = (int)Math.ceil((camera.x + camera.width + 1) / Tile.WIDTH);
+		int top_tile = (int)Math.floor((camera.y - 1) / Tile.HEIGHT);
+		int bottom_tile = (int)Math.ceil((camera.y + camera.height + 1) / Tile.HEIGHT);
+		
+		Image tileimg = ResourceManager.images.get(tilesheet_name);
+		for (int i = top_tile; i < bottom_tile; i++){
+			if (!isValidTile(i, 0)) continue;
+			for (int j = left_tile; j < right_tile; j++){
+				System.out.println(isValidTile(i, j) + ", " + i + ", " + j);
+				if (!isValidTile(i, j)) continue;
+				Tile tile = tiles.get(i).get(j);
+				System.out.println("!!");
+				tile.Render(g2d, camera, tileimg);
+			}
+		}
+		
+		RenderSpeech(g2d);
+	}
+	
+	public void Speak(String text){
+		spoken_text = text;
+		speech_timer = 0;
+		speech_time_limit = 240;
+	}
+	
+	public void Speak(String text, int speech_time){
+		spoken_text = text;
+		speech_timer = 0;
+		speech_time_limit = speech_time;
+	}
+	
+	public void RenderSpeech(Graphics2D g2d){
+		//TODO::
+	}
+}

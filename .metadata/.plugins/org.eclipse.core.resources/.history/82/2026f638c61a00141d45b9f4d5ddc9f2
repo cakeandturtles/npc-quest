@@ -1,0 +1,8 @@
+package entities.helpers;
+
+public class Text {
+	public static final String ELLIPSE = "..."; 
+	public static final String COPYING = "Stop copying me!";
+	public static final String WARTKISS = "A kiss from the pox wart...";
+	public static final String DESIRE = "What do you want?!";
+}

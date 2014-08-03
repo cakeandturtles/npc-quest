@@ -1,0 +1,72 @@
+package entities.helpers;
+
+public class Animation {
+	int max_frame;
+	int curr_frame;
+	int frame_count = 0;
+	int frame_delay;
+	int frame_width;
+	int frame_height;
+	int rel_ani_x = 0;
+	int rel_ani_y = 0;
+	int abs_ani_x = 0;
+	int abs_ani_y = 0;
+	int x_offset = 0;
+	int y_offset = 0;
+	boolean animation_end = false;
+	boolean frame_change = false;
+	boolean repeat = true;
+	
+	public Animation(int max_frame, int frame_delay, int frame_width, int frame_height){
+		this.max_frame = max_frame;
+		this.frame_delay = frame_delay;
+		this.frame_width = frame_width;
+		this.frame_height = frame_height;
+		
+		Restart();
+	}
+	
+	public void Import(Animation obj){
+		max_frame = obj.max_frame;
+		frame_count = obj.frame_count;
+		frame_delay = obj.frame_delay;
+		frame_width = obj.frame_width;
+		frame_height = obj.frame_height;
+		rel_ani_x = obj.rel_ani_x;
+		rel_ani_y = obj.rel_ani_y;
+		abs_ani_x = obj.abs_ani_x;
+		abs_ani_y = obj.abs_ani_y;
+		x_offset = obj.x_offset;
+		y_offset = obj.y_offset;
+		animation_end = obj.animation_end;
+		frame_change = obj.frame_change;
+		repeat = obj.repeat;
+	}
+	
+	public Animation Export(){
+		return new Animation(max_frame, frame_delay, frame_width, frame_height);
+	}
+	
+	public void Restart(){
+		curr_frame = 0;
+		frame_count = 0;
+		animation_end = false;
+		frame_change = false;
+	}
+	
+	public void Change(int rax, int ray, int mf){
+		if (!(rel_ani_x == rax && rel_ani_y == ray && max_frame == mf)){
+			rel_ani_x = rax;
+			rel_ani_y = ray;
+			max_frame = mf;
+			Restart();
+		}
+	}
+	
+	public void Update(){
+		frame_change = false;
+		animation_end = false;
+		
+		frame_count++;
+	}
+}

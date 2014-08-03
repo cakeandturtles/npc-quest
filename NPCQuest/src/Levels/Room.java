@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.util.ArrayList;
 
+import com.thoughtworks.xstream.XStream;
+
 import Managers.InputManager;
 import Managers.KeyManager;
 import Managers.ResourceManager;
@@ -14,7 +16,6 @@ import npcquest.NPCQuest;
 
 import entities.GameObject;
 import entities.Player;
-import entities.NPC;
 
 public class Room {
 	public int MAP_WIDTH;
@@ -26,6 +27,7 @@ public class Room {
 	public int speech_time_limit = 30;
 	public boolean speaking = false;
 	public int speaker_id = 0;
+	public boolean paused = false;
 	
 	public String tilesheet_name = "tilesheet";
 	public ArrayList<ArrayList<Tile>> tiles;
@@ -40,8 +42,6 @@ public class Room {
 		
 		player = new Player(72, 96);
 		entities = new ArrayList<GameObject>();
-		entities.add(new NPC(72, 16, 1));
-		entities.add(new NPC(128, 16, 2));
 		InitializeTiles();
 	}
 	
@@ -53,25 +53,6 @@ public class Room {
 				row.add(new Tile(j * Tile.WIDTH, i * Tile.HEIGHT, Tile.GHOST, 0, 0));
 			}
 			tiles.add(row);
-		}
-		
-		//SOLID WALLS
-		for (int j = 0; j < MAP_WIDTH; j++){
-			Tile tile = tiles.get(0).get(j);
-			tile.collision = Tile.SOLID;
-			tile.tileset_x = 1;
-			
-			tile = tiles.get(MAP_HEIGHT-1).get(j);
-			tile.collision = Tile.SOLID;
-			tile.tileset_x = 1;
-		}for (int i = 0; i < MAP_HEIGHT; i++){
-			Tile tile = tiles.get(i).get(0);
-			tile.collision = Tile.SOLID;
-			tile.tileset_x = 1;
-			
-			tile = tiles.get(i).get(MAP_WIDTH-1);
-			tile.collision = Tile.SOLID;
-			tile.tileset_x = 1;
 		}
 	}
 	
@@ -147,12 +128,16 @@ public class Room {
 	}
 	
 	public void RenderSpeech(Graphics2D g2d){
-		if (!speaking || spoken_text == null || spoken_text.length() == 0) return;
+		if (!paused){
+			if (!speaking || spoken_text == null || spoken_text.length() == 0) return;
+		}
 		
 		int y = 0;
 		int h = 24;
 		if (player.y+player.bb/2 < NPCQuest.GAME_HEIGHT/2)
 			y = NPCQuest.GAME_HEIGHT - 24 - h;
+		if (paused)
+			y = NPCQuest.GAME_HEIGHT/2 - h;
 		//DRAWR THE BORDER
 		Color borderBGColor = NPCQuest.COLOR_THREE;
 		if (is_speaker_player) borderBGColor = NPCQuest.COLOR_TWO;
@@ -180,12 +165,39 @@ public class Room {
 			dx, dy, dx+16, dy+16, sx, sy, sx + 16, sy + 16, null); 
 		
 		//DRAWR THE TEXT
+		String[] text = spoken_text.split("\n");
+		int fs = 5;
 		g2d.setColor(NPCQuest.COLOR_ZERO);
-		g2d.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 6));
-		g2d.drawString(spoken_text, 32, y+16);
+		g2d.setFont(new Font(Font.MONOSPACED, Font.PLAIN, fs));
+		for (int i = 0; i < text.length; i++){
+			g2d.drawString(text[i], 32, y+16+(i*fs));
+		}
 		
 		//DRAWR THE X
-		if (speech_timer >= Math.round(speech_time_limit/2.0))
-			g2d.drawString("X", NPCQuest.GAME_WIDTH - 16, y+28);
+		if (speech_timer >= Math.round(speech_time_limit/2.0)){
+			if (paused)
+				g2d.drawString("ENTR", NPCQuest.GAME_WIDTH - 28, y+28);
+			else g2d.drawString("X", NPCQuest.GAME_WIDTH - 16, y+28);
+		}
+	}
+	
+	/***********************************MOUSE CLICK LEVEL EDIT STUFF*************/
+	public void MouseClicked(int tilex, int tiley){
+		Tile tile = tiles.get(tiley).get(tilex);
+		if (tile.collision == Tile.GHOST){
+			tile.collision = Tile.SOLID;
+			tile.tileset_x = 1;
+			tile.tileset_y = 0;
+		}else if (tile.collision == Tile.SOLID){
+			tile.collision = Tile.GHOST;
+			tile.tileset_x = 0;
+			tile.tileset_y = 0;
+		}
+	}
+	
+	public String Export(){
+		XStream xstream = new XStream();
+		String xml = xstream.toXML(this);
+		return xml;
 	}
 }

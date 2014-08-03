@@ -1,0 +1,86 @@
+package entities;
+
+import java.awt.Point;
+import java.awt.geom.Point2D;
+
+import Levels.Room;
+
+public class GameMover extends GameSprite{
+	public final static int LEFT = 10;
+	public final static int RIGHT = 11;
+	
+	public final static int STANDING = 0;
+	public final static int RUNNING = 1;
+	public final static int JUMPING = 2;
+	public final static int FALLING = 3;
+	
+	public Point2D prev;
+	public float max_run_vel = 2.0f;
+	public float gnd_run_acc = 0.67f;
+	public float gnd_run_dec = 0.67f;
+	public float air_run_acc = 0.67f;
+	public float air_run_dec = 0.67f;
+	public boolean horizontal_input = false;
+	
+	public boolean horizontal_collision = false;
+	public boolean vertical_collision = false;
+	public boolean pressing_down = false;
+	public boolean pressed_down = false;
+	public boolean has_double_jumped = false;
+	public boolean stuck_in_wall = false;
+	public boolean die_to_suffocation = false;
+	
+	public Point2D vel = new Point2D.Float();
+	public float normal_grav_acc = 0.08f;
+	public float jump_grav_acc = 0.4f;
+	public float grav_acc = normal_grav_acc;
+	public float jump_vel = 4.7f;
+	public boolean is_jumping = false;
+	public int jump_timer = 0;
+	public int jump_time_limit = 30;
+	public float terminal_vel = 7.0f;
+	public boolean was_on_ground = true;
+	public boolean on_ground = true;
+	public boolean played_land_sound = true;
+	public float prev_bottom;
+	
+	public int move_state = STANDING;
+	public int prev_move_state = move_state;
+	public int facing = RIGHT;
+	public int original_facing = facing;
+	
+	public GameMover(float x, float y, int lb, int tb, int rb, int bb, String img_name){
+		super(x, y, lb, tb, rb, bb, img_name);
+		prev = new Point2D.Float(x, y);
+		prev_bottom = y + bb;
+	}
+	
+	@Override
+	public void ResetPosition(){
+		super.ResetPosition();
+		facing = original_facing;
+	}
+	
+	@Override
+	public void Update(Room room){
+		DieToSuffocation(room);
+		
+		if (!stuck_in_wall){
+			ApplyPhysics(room);
+			prev.setLocation(x, y);
+			if (!on_ground){
+				if (!was_on_ground)
+					pressed_down = false;
+			}
+		}
+		UpdateMoveState();
+		UpdateAnimationFromState()
+		
+		super.Update(room);
+	}
+	
+	public void UpdateMoveState(){
+		if (vel.getY() < 0) move_state = JUMPING;
+		else move_state = FALLING;
+	}
+}

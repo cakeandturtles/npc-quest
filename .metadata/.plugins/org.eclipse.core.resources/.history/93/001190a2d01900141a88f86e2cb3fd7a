@@ -1,0 +1,24 @@
+package Levels;
+
+import entities.GameObject;
+
+public class Tile extends GameObject{
+	public static final int WIDTH = 16;
+	public static final int HEIGHT = 16;
+	public static final int GHOST = 0;
+	public static final int SOLID = 1;
+	
+	public int collision;
+	public int tileset_x;
+	public int tileset_y;
+	
+	public Tile(float x, float y, int collision, int tx, int ty){
+		super(x, y, 0, 0, WIDTH, HEIGHT);
+		type = "Tile";
+		this.collision = collision;
+		tileset_x = tx;
+		tileset_y = ty;
+	}
+	
+	
+}

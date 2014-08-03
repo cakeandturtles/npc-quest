@@ -11,7 +11,6 @@ import Managers.ResourceManager;
 
 public class GameSprite extends GameObject{
 	public String img_name;
-	public Image image;
 	public Animation animation;
 	public boolean visible = true;
 	public float opacity = 1.0f;
@@ -21,7 +20,6 @@ public class GameSprite extends GameObject{
 		type = "GameSprite";
 		this.img_name = img_name;
 		
-		image = ResourceManager.images.get(img_name);
 		animation = new Animation(1, 16, 16, 16);
 	}
 	
@@ -42,6 +40,7 @@ public class GameSprite extends GameObject{
 		int sx = a.frame_width*column+a.abs_ani_x;
 		int sy = a.frame_height*row+a.abs_ani_y;
 		
+		Image image = ResourceManager.images.get(img_name);
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
 		g2d.drawImage(image,
 			//DESTINATION

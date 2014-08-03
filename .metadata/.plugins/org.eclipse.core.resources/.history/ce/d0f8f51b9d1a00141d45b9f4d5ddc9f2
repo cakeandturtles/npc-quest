@@ -1,0 +1,9 @@
+package entities;
+
+public class Player extends GameMover{
+	public Player(float x, float y){
+		super(x, y, 2, 2, 14, 14, "npc_sheet");
+		
+		
+	}
+}

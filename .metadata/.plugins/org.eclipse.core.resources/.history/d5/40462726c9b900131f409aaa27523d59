@@ -1,0 +1,7 @@
+package com.meow.kittypaintdev.server;
+
+public class DrawrServerChunk {
+	public DrawrServerChunk(){
+		
+	}
+}

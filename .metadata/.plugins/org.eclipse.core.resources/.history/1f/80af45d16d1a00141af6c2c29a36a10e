@@ -1,0 +1,21 @@
+package Levels;
+
+import java.util.ArrayList;
+
+import entities.GameMover;
+
+public class Room {
+	public ArrayList<ArrayList<Tile>> tiles;
+	public Camera camera;
+	
+
+	private GameMover player;
+	
+	public Room(){
+		camera = new Camera();
+	}
+	
+	public boolean isValidTile(int i, int j){
+		return true;
+	}
+}

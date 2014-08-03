@@ -1,0 +1,5 @@
+package Managers;
+
+public class ResourceManager {
+	public Map<String, ImageIcon> images;
+}

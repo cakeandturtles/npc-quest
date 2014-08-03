@@ -1,0 +1,27 @@
+package entities;
+
+public class GameObject {
+	public String type;
+	public int x;
+	public int y;
+	public int original_x;
+	public int original_y;
+	public int lb;
+	public int tb;
+	public int rb;
+	public int bb;
+	public int width;
+	public int height;
+	public boolean delete_me = false;
+	public boolean export_me = true;
+	public int z_index = 0;
+	
+	public GameObject(int x, int y, int lb, int tb, int rb, int bb){
+		type = "GameObject";
+		this.x = x;
+		this.y = y;
+		original_x = x;
+		original_y = y;
+		width = rb - lb;
+	}
+}

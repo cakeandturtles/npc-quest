@@ -1,0 +1,6 @@
+package entities;
+
+public class Player extends GameMover{
+	public Player(float x, float y){
+	}
+}

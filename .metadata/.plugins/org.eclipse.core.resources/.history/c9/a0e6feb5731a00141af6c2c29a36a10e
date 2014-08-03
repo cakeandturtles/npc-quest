@@ -1,0 +1,21 @@
+package Levels;
+
+public class Camera {
+	public float x = 0;
+	public float y = 0;
+	public int width;
+	public int heihgt;
+	public int screen_offset_x = 0;
+	public int screen_offset_y = 0;
+	public int x_lim = 100;
+	public int y_lim = 100;
+	public boolean instant = true;
+	public float speed = 1.5f;
+	
+	public Camera(){
+	}
+	
+	public void Update(Room room){
+		if (room.player.x + room.player.rb + x_lim - x >= 
+	}
+}

@@ -1,0 +1,20 @@
+package Levels;
+
+import java.awt.event.MouseEvent;
+import npcquest.NPCQuest;
+
+public class World {
+	public static Room room;
+	
+	public static void init(){
+		room = new Room();
+	}
+	
+	public static void Update(){
+		room.Update();
+	}
+
+	public static void MouseClicked(MouseEvent e){
+		System.out.println((e.getX()/(NPCQuest.VIEW_SCALE*Tile.WIDTH)) + ", " + ((e.getY()-26)/(NPCQuest.VIEW_SCALE*Tile.HEIGHT)));
+	}
+}

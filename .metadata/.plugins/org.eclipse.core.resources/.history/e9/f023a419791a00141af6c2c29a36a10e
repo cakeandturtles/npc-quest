@@ -1,0 +1,9 @@
+package Managers;
+
+import Levels.Room;
+
+public class InputManager {
+	public static void Update(Room room){
+		
+	}
+}

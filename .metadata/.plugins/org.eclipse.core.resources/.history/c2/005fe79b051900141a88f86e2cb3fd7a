@@ -1,0 +1,9 @@
+package Managers;
+
+import java.util.Map;
+
+import javax.swing.ImageIcon;
+
+public class ResourceManager {
+	public static Map<String, ImageIcon> images;
+}

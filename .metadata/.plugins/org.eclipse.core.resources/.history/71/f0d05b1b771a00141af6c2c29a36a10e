@@ -1,0 +1,22 @@
+package Managers;
+
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+
+public class KeyManager {
+	public ArrayList<Integer> keys_down;
+	public ArrayList<Integer> keys_pressed;
+	public ArrayList<Integer> keys_have_pressed;
+	public ArrayList<Integer> keys_up;
+	
+	public KeyManager(){
+		keys_down = new ArrayList<Integer>();
+		keys_pressed = new ArrayList<Integer>();
+		keys_have_pressed = new ArrayList<Integer>();
+		keys_up = new ArrayList<Integer>();
+	}
+	
+	public void KeyDown(KeyEvent e){
+		keys_down
+	}
+}

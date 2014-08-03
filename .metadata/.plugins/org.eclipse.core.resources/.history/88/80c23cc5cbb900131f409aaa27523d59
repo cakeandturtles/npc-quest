@@ -1,0 +1,8 @@
+package com.meow.kittypaintdev.server;
+
+import java.awt.Image;
+
+public class BrushObj {
+	Image img;
+	
+}

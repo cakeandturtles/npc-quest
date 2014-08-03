@@ -1,0 +1,34 @@
+package Levels;
+
+import npcquest.NPCQuest;
+
+public class Camera {
+	public float x = 0;
+	public float y = 0;
+	public int width;
+	public int height;
+	public int screen_offset_x = 0;
+	public int screen_offset_y = 0;
+	public int x_lim = 100;
+	public int y_lim = 100;
+	public boolean instant = true;
+	public float speed = 1.5f;
+	
+	public Camera(){
+		width = NPCQuest.GAME_WIDTH;
+		height = NPCQuest.GAME_HEIGHT;
+	}
+	
+	public void Update(Room room){
+		//Horizontal Panning RIGHT
+		if (room.player.x + room.player.rb + x_lim - x >= width){
+			if (x < room.MAP_WIDTH * Tile.WIDTH - width){
+				if (instant){
+					x = room.player.x + room.player.rb + x_lim - width;
+				}else{
+					x += speed;
+				}
+			}
+		}
+	}
+}

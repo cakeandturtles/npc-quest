@@ -1,0 +1,18 @@
+package Managers;
+
+import java.awt.Image;
+import java.util.Map;
+
+import javax.swing.ImageIcon;
+
+public class ResourceManager {
+	public static Map<String, Image> images;
+	public static String path = "/resources/";
+	
+	public static void init(){		
+		String img_path = path;// + "images/";
+		
+		ImageIcon ii = new ImageIcon(ResourceManager.class.getResource(img_path + "npc_sheet.png"));
+		images.put("npc_sheet", ii.getImage());
+	}
+}

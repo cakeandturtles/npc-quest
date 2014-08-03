@@ -1,0 +1,23 @@
+package Managers;
+
+import java.awt.Image;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.swing.ImageIcon;
+
+public class ResourceManager {
+	public static Map<String, Image> images;
+	
+	public static void init(){		
+		images = new HashMap<String, Image>();
+		String[] image_names = {
+			"npc_sheet",
+			"tilesheet"
+		};
+		
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		for (int i = 0; i < image_names.size(); i++){
+		}
+	}
+}

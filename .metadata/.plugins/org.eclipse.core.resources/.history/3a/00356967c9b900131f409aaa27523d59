@@ -1,0 +1,9 @@
+package com.meow.kittypaintdev.server;
+
+import java.awt.image;
+
+public class DrawrServerChunk {
+	public DrawrServerChunk(DrawrServerMap drawr_map){
+		//Create image not 
+	}
+}

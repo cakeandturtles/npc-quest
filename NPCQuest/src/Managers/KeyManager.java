@@ -11,6 +11,7 @@ public class KeyManager {
 	
 	public static final int A_BUTTON = KeyEvent.VK_X;
 	public static final int B_BUTTON = KeyEvent.VK_Z;
+	public static final int START_BUTTON = KeyEvent.VK_ENTER;
 	public static final int UP = KeyEvent.VK_UP;
 	public static final int LEFT = KeyEvent.VK_LEFT;
 	public static final int DOWN = KeyEvent.VK_DOWN;

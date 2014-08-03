@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.awt.image.Raster"/>
+<fullyQualifiedTypeName name="java.awt.image.ColorModel"/>
+<fullyQualifiedTypeName name="java.awt.image.WritableRaster"/>
+<fullyQualifiedTypeName name="java.awt.Graphics"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
+<fullyQualifiedTypeName name="java.net.URL"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="java.awt.geom.AffineTransform"/>
+<fullyQualifiedTypeName name="java.awt.image.AffineTransformOp"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="java.awt.AlphaComposite"/>
+<fullyQualifiedTypeName name="java.io.ByteArrayInputStream"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="com.cakeandturtles.pixelpets.attacks.statuses.BattleEffect"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="entities.helpers.Animation"/>
+<fullyQualifiedTypeName name="java.awt.Graphics2D"/>
+<fullyQualifiedTypeName name="java.awt.Point"/>
+<fullyQualifiedTypeName name="java.awt.geom.Point2D"/>
+<fullyQualifiedTypeName name="Levels.Camera"/>
+<fullyQualifiedTypeName name="entities.GameObject"/>
+<fullyQualifiedTypeName name="java.awt.Image"/>
+<fullyQualifiedTypeName name="Levels.Tile"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="Levels.Room"/>
+<fullyQualifiedTypeName name="entities.GameMover"/>
+<fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
+<fullyQualifiedTypeName name="Managers.ResourceManager"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,7 @@
+package com.meow.kittypaintdev.server;
+
+public class DrawrBrushes {
+	public Image setImageColor(Image img, int size, int r, int g, int b){
+		
+	}
+}

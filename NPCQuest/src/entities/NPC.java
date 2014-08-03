@@ -2,27 +2,31 @@ package entities;
 
 import entities.helpers.Txt;
 import Levels.Room;
+import Managers.ResourceManager;
 
 public class NPC extends GameMover{
 	public int npc_id;
 	public String whatdidisay = "";
 	public boolean speaking = false;
 	public boolean fade_away = false;
+	public String voice = "talk_next";
 	
-	public NPC(float x, float y, int npc_id){
+	public NPC(float x, float y, int npc_id, String voice){
 		super(x, y, 2, 2, 14, 14, "npc_sheet");
 		type = "NPC";
 		solid = true;
 		this.npc_id = npc_id;
+		this.voice = voice;
 		
 		animation.abs_ani_y = 2*npc_id*animation.frame_height;
 	}
 	
-	public NPC(float x, float y, int npc_id, String img_name){
+	public NPC(float x, float y, int npc_id, String voice, String img_name){
 		super(x, y, 2, 2, 14, 14, img_name);
 		type = "NPC";
 		solid = true;
 		this.npc_id = npc_id;
+		this.voice = voice;
 		
 		animation.abs_ani_y = 2*npc_id*animation.frame_height;
 	}
@@ -37,7 +41,6 @@ public class NPC extends GameMover{
 		if (fade_away){
 			opacity-=0.02f;
 			if (opacity < 0.0f){
-				room.StopSpeaking();
 				visible = false;
 				delete_me = true;
 			}
@@ -47,9 +50,11 @@ public class NPC extends GameMover{
 	
 	public void Speak(Room room, String initiator){
 		speaking = true;
-		String speech = GetSpeech(initiator);
+		String speech = GetSpeech(room, initiator);
 		whatdidisay = speech;
-		room.Speak(speech, npc_id, (type == "Player"));
+		room.Speak(speech, npc_id, false);
+		
+		ResourceManager.playSound(voice);
 	}
 	
 	public void StopSpeaking(Room room){
@@ -57,10 +62,18 @@ public class NPC extends GameMover{
 		room.StopSpeaking();
 	}
 	
-	public String GetSpeech(String initiator){
+	public void Event(Room room){
+		if (npc_id == 0){
+			fade_away = true;
+			room.player.num_skulls++;
+		}
+	}
+	
+	public String GetSpeech(Room room, String initiator){
 		switch (npc_id){
 			case 0:
-				return Txt.ELLIPSE;
+				if (room.player.num_skulls == 0)
+					return Txt.ONE_SKULL;
 			case 1:
 				return PoxWartSpeak(initiator);
 			case 2:
@@ -75,12 +88,14 @@ public class NPC extends GameMover{
 			return Txt.COPYING;
 		if (initiator.equals(Txt.WARTKISS))
 			return Txt.GRATITUDE;
+		if (initiator.equals(Txt.CONFIDENCE))
+			return Txt.INQUIRY;
 		
 		return Txt.DESIRE;
 	}
 	
 	public String TreeSpeak(String initiator){
-		if (initiator.equals(Txt.DESIRE))
+		if (initiator.equals(Txt.DESIRE) || initiator.equals(Txt.INQUIRY))
 			return Txt.WARTKISS;
 		if (initiator.equals(Txt.CONFIDENCE))
 			return Txt.ELLIPSE;

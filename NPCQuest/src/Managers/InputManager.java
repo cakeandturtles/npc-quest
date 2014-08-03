@@ -1,9 +1,35 @@
 package Managers;
 
+import java.awt.event.KeyEvent;
+
+import npcquest.NPCQuest;
+
 import Levels.Room;
+import Levels.World;
 
 public class InputManager {
 	public static void Update(Room room){
+		//DEBUG LEVEL EDITOR
+		if (NPCQuest.level_edit){
+			if (KeyManager.keys_pressed.containsKey(KeyEvent.VK_PAGE_UP) &&
+				KeyManager.keys_down.containsKey(KeyEvent.VK_SHIFT)){
+				World.Export();
+			}
+		}
+		
+		if (!room.speaking){
+			if (KeyManager.keys_pressed.containsKey(KeyManager.START_BUTTON)){
+				room.paused = !room.paused;
+				if (room.paused){
+					room.Speak("Skulls Collected: "+room.player.num_skulls, 0);
+					room.speaking = false;
+				}
+				else
+					room.StopSpeaking();
+			}
+		}
+		if (room.paused) return;
+		
 		//INTERACTION/TALKING MANAGEMENT
 		if (KeyManager.keys_pressed.containsKey(KeyManager.A_BUTTON)){
 			room.player.Interact();

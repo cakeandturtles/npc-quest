@@ -1,0 +1,9 @@
+package Levels;
+
+public class Camera {
+	public float x;
+	public float y;
+	public int screen_offset_x;
+	public int screen_offset_y;
+
+}

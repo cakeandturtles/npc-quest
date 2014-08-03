@@ -1,0 +1,28 @@
+package entities;
+
+import Levels.Room;
+
+public class NPC extends GameMover{
+	public int npc_id;
+	public boolean fade_away = true;
+	
+	public NPC(float x, float y, int npc_id){
+		super(x, y, 2, 2, 14, 14, "npc_sheet");
+		type = "NPC";
+		solid = true;
+		this.npc_id = npc_id;
+		
+		animation.abs_ani_y = 2*npc_id*animation.frame_height;
+	}
+	
+	@Override
+	public void Update(Room room){
+		if (fade_away){
+			opacity--;
+			if (opacity < 0){
+				visible = false;
+				delete_me = false;
+			}
+		}
+	}
+}

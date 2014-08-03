@@ -1,0 +1,28 @@
+package entities;
+
+import Levels.Room;
+
+public class Player extends GameMover{
+	private boolean try_interact = false;
+	
+	public Player(float x, float y){
+		super(x, y, 2, 2, 14, 14, "npc_sheet");
+		type = "Player";
+	}
+	
+	@Override
+	public void Update(Room room){
+		if (try_interact){
+			for (int i = 0; i < room.entities.size(); i++){
+				
+			}
+		}
+		try_interact = false;
+		
+		super.Update(room);
+	}
+	
+	public void Interact(){
+		try_interact = true;
+	}
+}

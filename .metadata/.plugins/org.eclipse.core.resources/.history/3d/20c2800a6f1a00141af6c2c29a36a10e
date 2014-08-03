@@ -1,0 +1,22 @@
+import javax.swing.JFrame;
+
+@SuppressWarnings("serial")
+public class Main extends JFrame{
+	public static final int GAME_WIDTH = 160;
+	public static final int GAME_HEIGHT = 144;
+	
+	public Main(){
+		add(new GameWindow());
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(GAME_WIDTH, GAME_HEIGHT);
+		setLocationRelativeTo(null);
+		setTitle("NPC Quest");
+		setResizable(false);
+		setVisible(true);
+	}
+	
+	public static void main(String[] args){
+		new Main();
+	}
+}

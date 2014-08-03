@@ -1,0 +1,102 @@
+package entities;
+
+import entities.helpers.Txt;
+import Levels.Room;
+import Managers.ResourceManager;
+
+public class NPC extends GameMover{
+	public int npc_id;
+	public String whatdidisay = "";
+	public boolean speaking = false;
+	public boolean fade_away = false;
+	
+	public NPC(float x, float y, int npc_id){
+		super(x, y, 2, 2, 14, 14, "npc_sheet");
+		type = "NPC";
+		solid = true;
+		this.npc_id = npc_id;
+		
+		animation.abs_ani_y = 2*npc_id*animation.frame_height;
+	}
+	
+	public NPC(float x, float y, int npc_id, String img_name){
+		super(x, y, 2, 2, 14, 14, img_name);
+		type = "NPC";
+		solid = true;
+		this.npc_id = npc_id;
+		
+		animation.abs_ani_y = 2*npc_id*animation.frame_height;
+	}
+	
+	public void ChangeNPC_ID(int npc_id){
+		this.npc_id = npc_id;
+		animation.abs_ani_y = 2*npc_id*animation.frame_height;
+	}
+	
+	@Override
+	public void Update(Room room){
+		if (fade_away){
+			opacity-=0.02f;
+			if (opacity < 0.0f){
+				visible = false;
+				delete_me = true;
+			}
+		}
+		super.Update(room);
+	}
+	
+	public void Speak(Room room, String initiator){
+		speaking = true;
+		String speech = GetSpeech(room, initiator);
+		whatdidisay = speech;
+		room.Speak(speech, npc_id, (type == "Player"));
+		
+		ResourceManager.playSound(my_sound);
+	}
+	
+	public void StopSpeaking(Room room){
+		speaking = false;
+		room.StopSpeaking();
+	}
+	
+	public void Event(Room room){
+		if (npc_id == 0){
+			fade_away = true;
+			room.player.num_skulls++;
+		}
+	}
+	
+	public String GetSpeech(Room room, String initiator){
+		switch (npc_id){
+			case 0:
+				if (room.player.num_skulls == 0)
+					return Txt.ONE_SKULL;
+			case 1:
+				return PoxWartSpeak(initiator);
+			case 2:
+				return TreeSpeak(initiator);
+			default:
+				return "undefined";
+		}
+	}
+	
+	public String PoxWartSpeak(String initiator){
+		if (initiator.equals(Txt.DESIRE))
+			return Txt.COPYING;
+		if (initiator.equals(Txt.WARTKISS))
+			return Txt.GRATITUDE;
+		
+		return Txt.DESIRE;
+	}
+	
+	public String TreeSpeak(String initiator){
+		if (initiator.equals(Txt.DESIRE))
+			return Txt.WARTKISS;
+		if (initiator.equals(Txt.CONFIDENCE))
+			return Txt.ELLIPSE;
+		if (initiator.equals(Txt.WARTKISS))
+			return Txt.COPYING;
+
+		return Txt.CONFIDENCE;
+	}
+}

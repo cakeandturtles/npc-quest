@@ -1,0 +1,223 @@
+package Levels;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.util.ArrayList;
+
+import com.thoughtworks.xstream.XStream;
+
+import Managers.InputManager;
+import Managers.KeyManager;
+import Managers.ResourceManager;
+
+import npcquest.NPCQuest;
+
+import entities.GameObject;
+import entities.Player;
+import entities.NPC;
+
+public class Room {
+	public int MAP_WIDTH;
+	public int MAP_HEIGHT;
+	public Camera camera;
+	public String spoken_text = "";
+	public boolean is_speaker_player = false;
+	public int speech_timer = 0;
+	public int speech_time_limit = 30;
+	public boolean speaking = false;
+	public int speaker_id = 0;
+	public boolean paused = false;
+	
+	public String tilesheet_name = "tilesheet";
+	public ArrayList<ArrayList<Tile>> tiles;
+
+	public Player player;
+	public ArrayList<GameObject> entities;
+	
+	public Room(){
+		MAP_WIDTH = NPCQuest.GAME_WIDTH / Tile.WIDTH;
+		MAP_HEIGHT = NPCQuest.GAME_HEIGHT / Tile.HEIGHT;
+		camera = new Camera();
+		
+		player = new Player(72, 96);
+		entities = new ArrayList<GameObject>();
+		InitializeTiles();
+	}
+	
+	public void InitializeTiles(){
+		tiles = new ArrayList<ArrayList<Tile>>();
+		for (int i = 0; i < MAP_HEIGHT; i++){
+			ArrayList<Tile> row = new ArrayList<Tile>();
+			for (int j = 0; j < MAP_WIDTH; j++){
+				row.add(new Tile(j * Tile.WIDTH, i * Tile.HEIGHT, Tile.GHOST, 0, 0));
+			}
+			tiles.add(row);
+		}
+		
+		//SOLID WALLS
+		for (int j = 0; j < MAP_WIDTH; j++){
+			Tile tile = tiles.get(0).get(j);
+			tile.collision = Tile.SOLID;
+			tile.tileset_x = 1;
+			
+			tile = tiles.get(MAP_HEIGHT-1).get(j);
+			tile.collision = Tile.SOLID;
+			tile.tileset_x = 1;
+		}for (int i = 0; i < MAP_HEIGHT; i++){
+			Tile tile = tiles.get(i).get(0);
+			tile.collision = Tile.SOLID;
+			tile.tileset_x = 1;
+			
+			tile = tiles.get(i).get(MAP_WIDTH-1);
+			tile.collision = Tile.SOLID;
+			tile.tileset_x = 1;
+		}
+	}
+	
+	public boolean isValidTile(int i, int j){
+		return !(i < 0 || i >= tiles.size() || j < 0 || j >= tiles.get(i).size());
+	}
+	
+	public void Update(){
+		InputManager.Update(this);
+		player.Update(this);
+		camera.Update(this);
+		for (int i = 0; i < entities.size(); i++){
+			entities.get(i).Update(this);
+		}
+		for (int i = entities.size()-1; i >= 0; i--){
+			if (entities.get(i).delete_me)
+				entities.remove(i);
+		}
+		KeyManager.ForgetKeysPressed();
+		
+		//Speech timer for various cyclic things
+		speech_timer++;
+		if (speech_timer > speech_time_limit)
+			speech_timer = 0;
+	}
+	
+	public void Render(Graphics2D g2d){
+		g2d.setBackground(NPCQuest.COLOR_ZERO);
+		g2d.clearRect(0, 0, NPCQuest.GAME_WIDTH, NPCQuest.GAME_HEIGHT);
+		
+		//DRAW THE TILES OF THE ROOM
+		int left_tile = (int)Math.floor((camera.x - 1) / Tile.WIDTH);
+		int right_tile = (int)Math.ceil((camera.x + camera.width + 1) / Tile.WIDTH);
+		int top_tile = (int)Math.floor((camera.y - 1) / Tile.HEIGHT);
+		int bottom_tile = (int)Math.ceil((camera.y + camera.height + 1) / Tile.HEIGHT);
+		
+		Image tileimg = ResourceManager.images.get(tilesheet_name);
+		for (int i = top_tile; i < bottom_tile; i++){
+			if (!isValidTile(i, 0)) continue;
+			for (int j = left_tile; j < right_tile; j++){
+				if (!isValidTile(i, j)) continue;
+				Tile tile = tiles.get(i).get(j);
+				tile.Render(g2d, camera, tileimg);
+			}
+		}
+		
+		for (int i = 0; i < entities.size(); i++){
+			entities.get(i).Render(g2d, camera);
+		}
+		player.Render(g2d, camera);
+		
+		RenderSpeech(g2d);
+	}
+	
+	public void Speak(String text, int id){
+		spoken_text = text;
+		speaker_id = id;
+		speaking = true;
+		is_speaker_player = false;
+	}
+
+	public void Speak(String text, int id, boolean player){
+		spoken_text = text;
+		speaker_id = id;
+		speaking = true;
+		is_speaker_player = player;
+	}
+	
+	public void StopSpeaking(){
+		spoken_text = "";
+		speaker_id = 0;
+		speaking = false;
+	}
+	
+	public void RenderSpeech(Graphics2D g2d){
+		if (!paused){
+			if (!speaking || spoken_text == null || spoken_text.length() == 0) return;
+		}
+		
+		int y = 0;
+		int h = 24;
+		if (player.y+player.bb/2 < NPCQuest.GAME_HEIGHT/2)
+			y = NPCQuest.GAME_HEIGHT - 24 - h;
+		if (paused)
+			y = NPCQuest.GAME_HEIGHT/2 - h;
+		//DRAWR THE BORDER
+		Color borderBGColor = NPCQuest.COLOR_THREE;
+		if (is_speaker_player) borderBGColor = NPCQuest.COLOR_TWO;
+		Color borderColor = NPCQuest.COLOR_ONE;
+		g2d.setBackground(borderBGColor);
+		g2d.clearRect(8, y+8, NPCQuest.GAME_WIDTH - 16, h);
+		g2d.setBackground(borderColor);
+		g2d.clearRect(9, y+9, NPCQuest.GAME_WIDTH - 18, h-2);
+		g2d.setBackground(borderBGColor);
+		g2d.clearRect(10, y+10, NPCQuest.GAME_WIDTH - 20, h-4);
+		
+		//DRAWR THE PORTRAIT
+		g2d.setBackground(NPCQuest.COLOR_ZERO);
+		g2d.clearRect(12, y+12, 16, 16);
+		int row = 2*speaker_id;
+		int column = 0;
+		int dx = (int)Math.round(12-camera.x+camera.screen_offset_x);
+		int dy = (int)Math.round(y+12-camera.y+camera.screen_offset_y);
+		int sx = 16*column;
+		int sy = 16*row;
+		Image image = ResourceManager.images.get("npc_sheet");
+		if (is_speaker_player) image = ResourceManager.images.get("player_sheet");
+		g2d.drawImage(image,
+			//DESTINATION         // SOURCE                 //OBSERVER
+			dx, dy, dx+16, dy+16, sx, sy, sx + 16, sy + 16, null); 
+		
+		//DRAWR THE TEXT
+		String[] text = spoken_text.split("\n");
+		int fs = 5;
+		g2d.setColor(NPCQuest.COLOR_ZERO);
+		g2d.setFont(new Font(Font.MONOSPACED, Font.PLAIN, fs));
+		for (int i = 0; i < text.length; i++){
+			g2d.drawString(text[i], 32, y+16+(i*fs));
+		}
+		
+		//DRAWR THE X
+		if (speech_timer >= Math.round(speech_time_limit/2.0)){
+			if (paused)
+				g2d.drawString("ENTR", NPCQuest.GAME_WIDTH - 28, y+28);
+			else g2d.drawString("X", NPCQuest.GAME_WIDTH - 16, y+28);
+		}
+	}
+	
+	/***********************************MOUSE CLICK LEVEL EDIT STUFF*************/
+	public void MouseClicked(int tilex, int tiley){
+		Tile tile = tiles.get(tiley).get(tilex);
+		if (tile.collision == Tile.GHOST){
+			tile.collision = Tile.SOLID;
+			tile.tileset_x = 1;
+			tile.tileset_y = 0;
+		}else if (tile.collision == Tile.SOLID){
+			tile.collision = Tile.GHOST;
+			tile.tileset_x = 0;
+			tile.tileset_y = 0;
+		}
+	}
+	
+	public String Export(){
+		XStream xstream = new XStream();
+		String xml = xstream.toXML(this);
+		return xml;
+	}
+}

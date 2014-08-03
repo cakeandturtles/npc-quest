@@ -1,0 +1,9 @@
+package Levels;
+
+public class Room {
+	ArrayList<Tile> tiles;
+	
+	public boolean isValidTile(int i, int j){
+		return true;
+	}
+}

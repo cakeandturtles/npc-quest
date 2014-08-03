@@ -1,0 +1,8 @@
+package com.meow.kittypaintdev.server;
+
+public class DrawrBrushes {
+	BrushObj[] brushes;
+	String[] brush_names = {"circle","cat","cat32","kappa","custom","custom32"};
+	String[] brush_types = {"brush","stamp","stamp","stamp","stamp","stamp"};
+	int[] brush_variations = {10, 4, 6, 1, 102, 0, 0};
+}

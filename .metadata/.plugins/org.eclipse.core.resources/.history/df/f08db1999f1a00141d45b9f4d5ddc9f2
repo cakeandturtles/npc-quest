@@ -1,0 +1,33 @@
+package entities;
+
+import Levels.Room;
+
+public class Player extends GameMover{
+	private boolean try_interact = false;
+	
+	public Player(float x, float y){
+		super(x, y, 2, 2, 14, 14, "npc_sheet");
+		type = "Player";
+	}
+	
+	@Override
+	public void Update(Room room){
+		if (try_interact){
+			int q = 16;
+			for (int i = 0; i < room.entities.size(); i++){
+				if (room.entities.get(i).type == "NPC" && IsRectColliding(room.entities.get(i),
+						(int)Math.round(x+lb-q), (int)Math.round(y+tb-q), 
+						(int)Math.round(x+rb+q), (int)Math.round(y+bb+q))){
+					(NPC)room.entities.get(i).fade_away = true;
+				}
+			}
+		}
+		try_interact = false;
+		
+		super.Update(room);
+	}
+	
+	public void Interact(){
+		try_interact = true;
+	}
+}

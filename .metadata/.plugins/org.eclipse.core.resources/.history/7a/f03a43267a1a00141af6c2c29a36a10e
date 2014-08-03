@@ -1,0 +1,25 @@
+package npcquest;
+
+import javax.swing.JFrame;
+
+@SuppressWarnings("serial")
+public class NPCQuest extends JFrame{
+	public static final int GAME_WIDTH = 160;
+	public static final int GAME_HEIGHT = 144;
+	public static final int VIEW_SCALE = 2;
+	
+	public NPCQuest(){
+		add(new GameWindow());
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(GAME_WIDTH * VIEW_SCALE, GAME_HEIGHT * VIEW_SCALE);
+		setLocationRelativeTo(null);
+		setTitle("NPC Quest");
+		setResizable(false);
+		setVisible(true);
+	}
+	
+	public static void main(String[] args){
+		new NPCQuest();
+	}
+}

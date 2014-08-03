@@ -1,0 +1,5 @@
+package entities.npc;
+
+public class PoxWart extends NPC{
+
+}

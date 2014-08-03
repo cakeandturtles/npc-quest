@@ -1,0 +1,61 @@
+package Managers;
+
+import java.awt.Image;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineListener;
+import javax.swing.ImageIcon;
+
+public class ResourceManager {
+	public static Map<String, Image> images;
+	public static Map<String, URL> sounds;
+	
+	public static void init(){		
+		images = new HashMap<String, Image>();
+		sounds = new HashMap<String, URL>();
+		String[] image_names = {
+			"player_sheet",
+			"npc_sheet",
+			"tilesheet"
+		};
+		String[] sound_names = {
+			"talk_next"
+		};
+		
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		for (int i = 0; i < image_names.length; i++){
+			ImageIcon ii = new ImageIcon(
+					loader.getResource("resources/"+image_names[i]+".png"));
+			images.put(image_names[i], ii.getImage());
+		}
+		
+		for (int i = 0; i < sound_names.length; i++){
+			try {
+				sounds.put(sound_names[i], 
+						loader.getResource("resources/"+sound_names[i]+".wav"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static void playSound(String name){
+		URL url = sounds.get(name);
+		final Clip clip = (Clip)AudioSystem.getLine(new Line.Info(Clip.class));
+		if (clip != null){
+			clip.start();
+			clip.addLineListener(new LineListener(){
+				@Override
+				public void update(LineEvent e) {
+					if (e.getType() == LineEvent.Type.STOP)
+						clip.close();
+				}
+			});
+		}
+	}
+}

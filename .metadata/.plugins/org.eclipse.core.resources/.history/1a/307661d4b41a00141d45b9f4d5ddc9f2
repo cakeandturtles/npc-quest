@@ -1,0 +1,7 @@
+package entities.npc;
+
+public class PoxWart extends NPC{
+	public PoxWart(float x, float y){
+		super(x, y, 1);
+	}
+}
