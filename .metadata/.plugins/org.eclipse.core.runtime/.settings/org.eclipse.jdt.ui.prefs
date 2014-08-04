@@ -4,7 +4,7 @@ content_assist_autoactivation=true
 content_assist_autoinsert=false
 content_assist_favorite_static_members=
 content_assist_fill_method_arguments=false
-content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"/>
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="javax.sound.sampled.LineEvent$Type"><rhs name\="javax.sound.sampled.LineEvent$Type"/></lhs><lhs name\="javax.sound.sampled.Line$Info"><rhs name\="javax.sound.sampled.Line$Info"/></lhs></history>
 content_assist_number_of_computers=12
 content_assist_proposals_background=255,255,255
 content_assist_proposals_foreground=0,0,0

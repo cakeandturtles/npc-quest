@@ -2,11 +2,11 @@ package entities;
 
 import entities.helpers.Txt;
 import Levels.Room;
+import Levels.World;
 import Managers.ResourceManager;
 
 public class Player extends NPC{
 	private boolean try_interact = false;
-	public int num_skulls = 0;
 	
 	public Player(float x, float y){
 		super(x, y, 0, "", "player_sheet");
@@ -26,9 +26,9 @@ public class Player extends NPC{
 						(int)Math.round(x+rb+q), (int)Math.round(y+bb+q))){
 	
 						NPC npc = (NPC)room.entities.get(i);
-						if (npc.fade_away) break;
+						if (!npc.visible || npc.fade_away) break;
 						if (npc.speaking){
-							if (num_skulls >= 1){
+							if (World.num_skulls >= 1){
 								whatdidisay = npc.whatdidisay;
 								voice = npc.voice;
 							}

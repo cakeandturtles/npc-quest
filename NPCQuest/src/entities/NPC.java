@@ -2,6 +2,7 @@ package entities;
 
 import entities.helpers.Txt;
 import Levels.Room;
+import Levels.World;
 import Managers.ResourceManager;
 
 public class NPC extends GameMover{
@@ -31,6 +32,15 @@ public class NPC extends GameMover{
 		animation.abs_ani_y = 2*npc_id*animation.frame_height;
 	}
 	
+	@Override
+	public void Restart(){
+		opacity = 1.0f;
+		fade_away = false;
+		visible = true;
+		solid = true;
+		super.Restart();
+	}
+	
 	public void ChangeNPC_ID(int npc_id){
 		this.npc_id = npc_id;
 		animation.abs_ani_y = 2*npc_id*animation.frame_height;
@@ -42,7 +52,7 @@ public class NPC extends GameMover{
 			opacity-=0.02f;
 			if (opacity < 0.0f){
 				visible = false;
-				delete_me = true;
+				solid = false;
 			}
 		}
 		super.Update(room);
@@ -65,14 +75,14 @@ public class NPC extends GameMover{
 	public void Event(Room room){
 		if (npc_id == 0){
 			fade_away = true;
-			room.player.num_skulls++;
+			World.num_skulls++;
 		}
 	}
 	
 	public String GetSpeech(Room room, String initiator){
 		switch (npc_id){
 			case 0:
-				if (room.player.num_skulls == 0)
+				if (World.num_skulls == 0)
 					return Txt.ONE_SKULL;
 			case 1:
 				return PoxWartSpeak(initiator);

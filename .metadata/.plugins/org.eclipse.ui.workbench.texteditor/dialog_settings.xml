@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="form_resp" key="selection"/>
+		<item value="NPCQuest.COLOR" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="NPCQuest.COLOR"/>
+			<item value="System"/>
 			<item value="form_resp"/>
 			<item value="loadPoi"/>
 			<item value="loadPoit"/>
 			<item value="chunks_loaded"/>
 			<item value="max_chunks"/>
 			<item value="close_connection"/>
-			<item value="connection"/>
-			<item value="sendData"/>
 		</list>
 		<list key="replacehistory">
 		</list>
@@ -25,6 +25,6 @@
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="381" key="DIALOG_HEIGHT"/>
 		<item value="103" key="DIALOG_Y_ORIGIN"/>
-		<item value="-960" key="DIALOG_X_ORIGIN"/>
+		<item value="0" key="DIALOG_X_ORIGIN"/>
 	</section>
 </section>

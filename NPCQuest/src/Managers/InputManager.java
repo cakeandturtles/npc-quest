@@ -15,13 +15,21 @@ public class InputManager {
 				KeyManager.keys_down.containsKey(KeyEvent.VK_SHIFT)){
 				World.Export();
 			}
+			if (KeyManager.keys_pressed.containsKey(KeyEvent.VK_PAGE_DOWN) &&
+				KeyManager.keys_down.containsKey(KeyEvent.VK_SHIFT)){
+				World.ExportWorld();
+			}
+			
+			if (KeyManager.keys_pressed.containsKey(KeyEvent.VK_C)){
+				World.ColorCycle();
+			}
 		}
 		
 		if (!room.speaking){
 			if (KeyManager.keys_pressed.containsKey(KeyManager.START_BUTTON)){
 				room.paused = !room.paused;
 				if (room.paused){
-					room.Speak("Skulls Collected: "+room.player.num_skulls, 0);
+					room.Speak("Skulls Collected: "+World.num_skulls, 0);
 					room.speaking = false;
 				}
 				else

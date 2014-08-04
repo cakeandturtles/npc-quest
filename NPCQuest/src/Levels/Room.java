@@ -15,9 +15,10 @@ import Managers.ResourceManager;
 import npcquest.NPCQuest;
 
 import entities.GameObject;
+import entities.GameSprite;
 import entities.Player;
 
-public class Room {
+public class Room {	
 	public int MAP_WIDTH;
 	public int MAP_HEIGHT;
 	public Camera camera;
@@ -36,6 +37,11 @@ public class Room {
 	public ArrayList<GameObject> entities;
 	
 	public Room(){
+		/*COLOR_ZERO = NPCQuest.COLOR_ZERO;
+		COLOR_ONE = NPCQuest.COLOR_ONE;
+		COLOR_TWO = NPCQuest.COLOR_TWO;
+		COLOR_THREE = NPCQuest.COLOR_THREE;*/
+		
 		MAP_WIDTH = NPCQuest.GAME_WIDTH / Tile.WIDTH;
 		MAP_HEIGHT = NPCQuest.GAME_HEIGHT / Tile.HEIGHT;
 		camera = new Camera();
@@ -43,6 +49,13 @@ public class Room {
 		player = new Player(72, 96);
 		entities = new ArrayList<GameObject>();
 		InitializeTiles();
+	}
+
+	public void Restart(){
+		player.Restart();
+		for (int i = 0; i < entities.size(); i++){
+			entities.get(i).Restart();
+		}
 	}
 	
 	public void InitializeTiles(){
@@ -58,6 +71,25 @@ public class Room {
 	
 	public boolean isValidTile(int i, int j){
 		return !(i < 0 || i >= tiles.size() || j < 0 || j >= tiles.get(i).size());
+	}
+	
+	public void ColorCycle(int color_index){
+		player.animation.abs_ani_x = color_index*(4*16);
+		for (int i = 0; i < entities.size(); i++){
+			try{
+				GameSprite.class.cast(entities.get(i));
+				((GameSprite)entities.get(i)).animation.abs_ani_x = color_index*(4*16);
+			}catch(Exception e){
+			}
+		}
+		for (int i = 0; i < tiles.size(); i++){
+			for (int j = 0; j < tiles.get(i).size(); j++){
+				if (tiles.get(i).get(j).collision == Tile.GHOST)
+					tiles.get(i).get(j).tileset_x = color_index*2;
+				else
+					tiles.get(i).get(j).tileset_x = (color_index*2)+1;
+			}
+		}
 	}
 	
 	public void Update(){
@@ -80,7 +112,7 @@ public class Room {
 	}
 	
 	public void Render(Graphics2D g2d){
-		g2d.setBackground(NPCQuest.COLOR_ZERO);
+		g2d.setBackground(World.COLOR_ZERO);
 		g2d.clearRect(0, 0, NPCQuest.GAME_WIDTH, NPCQuest.GAME_HEIGHT);
 		
 		//DRAW THE TILES OF THE ROOM
@@ -139,9 +171,9 @@ public class Room {
 		if (paused)
 			y = NPCQuest.GAME_HEIGHT/2 - h;
 		//DRAWR THE BORDER
-		Color borderBGColor = NPCQuest.COLOR_THREE;
-		if (is_speaker_player) borderBGColor = NPCQuest.COLOR_TWO;
-		Color borderColor = NPCQuest.COLOR_ONE;
+		Color borderBGColor = World.COLOR_THREE;
+		if (is_speaker_player) borderBGColor = World.COLOR_TWO;
+		Color borderColor = World.COLOR_ONE;
 		g2d.setBackground(borderBGColor);
 		g2d.clearRect(8, y+8, NPCQuest.GAME_WIDTH - 16, h);
 		g2d.setBackground(borderColor);
@@ -150,10 +182,10 @@ public class Room {
 		g2d.clearRect(10, y+10, NPCQuest.GAME_WIDTH - 20, h-4);
 		
 		//DRAWR THE PORTRAIT
-		g2d.setBackground(NPCQuest.COLOR_ZERO);
+		g2d.setBackground(World.COLOR_ZERO);
 		g2d.clearRect(12, y+12, 16, 16);
 		int row = 2*speaker_id;
-		int column = 0;
+		int column = World.color_index * 4;
 		int dx = (int)Math.round(12-camera.x+camera.screen_offset_x);
 		int dy = (int)Math.round(y+12-camera.y+camera.screen_offset_y);
 		int sx = 16*column;
@@ -167,7 +199,7 @@ public class Room {
 		//DRAWR THE TEXT
 		String[] text = spoken_text.split("\n");
 		int fs = 5;
-		g2d.setColor(NPCQuest.COLOR_ZERO);
+		g2d.setColor(World.COLOR_ZERO);
 		g2d.setFont(new Font(Font.MONOSPACED, Font.PLAIN, fs));
 		for (int i = 0; i < text.length; i++){
 			g2d.drawString(text[i], 32, y+16+(i*fs));
@@ -182,16 +214,30 @@ public class Room {
 	}
 	
 	/***********************************MOUSE CLICK LEVEL EDIT STUFF*************/
-	public void MouseClicked(int tilex, int tiley){
-		Tile tile = tiles.get(tiley).get(tilex);
-		if (tile.collision == Tile.GHOST){
-			tile.collision = Tile.SOLID;
-			tile.tileset_x = 1;
-			tile.tileset_y = 0;
-		}else if (tile.collision == Tile.SOLID){
-			tile.collision = Tile.GHOST;
-			tile.tileset_x = 0;
-			tile.tileset_y = 0;
+	public void MouseClicked(int tilex, int tiley, int clickType){
+		if (clickType == 1){
+		}else{
+			Tile tile = tiles.get(tiley).get(tilex);
+			boolean cycle = false;
+			if (clickType == 0){
+				tile.collision = Tile.SOLID;
+				if (tile.tileset_x == 1)
+					cycle = true;
+				else tile.tileset_x = 1;
+			}else if (clickType == 2){
+				tile.collision = Tile.GHOST;
+				if (tile.tileset_x == 0)
+					cycle = true;
+				else tile.tileset_x = 0;
+			}
+			
+			if (cycle){
+				int max = 2;
+				tile.tileset_y++;
+				if (tile.tileset_y >= max){
+					tile.tileset_y = 0;
+				}
+			}
 		}
 	}
 	

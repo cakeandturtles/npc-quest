@@ -2,18 +2,25 @@ NPC Quest:
 
 TODO::
 -----------------------------------------------------------------------------------
-2. Level Editor -> Import/Export rooms as txt/xml files
+1. Make day/night cycle (reset with World.NewGame()) -> time and day variables
+	WORLDCOLORCYCLE instead of room
+
+	-Green is midday, purple is sunset, dark is night, orange is sunrise
+	-no watch UI, time doesn't pass when the room is PAUSED
+	-after 3-5 days, game over
+		-STATS (see npc stuff below)
+2. Make town tileset.
 3. Speech sequences (for skulls)
-4. Most importantly, make the dialogue/monologue of the NPCs be personality-filled, but also meaningful. This is a little village of weird creatures 
-	-NPCs have moods (happy, sad, mad, neutral)
-		-you can converse with the NPCs until you can:
-			-kiss every1, make every1 cry, make every1 kill u
-	
-	-"This is all I can say.", "We exist to serve a purpose. An objective"
-	-"What is the point of me saying this?"
-	
+4. MORE NPCS!!!!
+	-NPCs have moods :) :( >:( :|
+		-kiss NPC, kill NPC, give NPC hope, take hope away from NPC, become NPC friend, become enemy
+		-quantify emotions...
+	-Most importantly, make the dialogue/monologue of the NPCs be personality-filled, but also meaningful. This is a little village of weird creatures 	
+		-"This is all I can say.", "We exist to serve a purpose. An objective"
+		-"What is the point of me saying this?"
 	-e.x.::
 		-talkative girl from MOTHER 3, roof guy from Anodyne
+2. IMplement saving
 
 
 ===================================================================================

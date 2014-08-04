@@ -1,0 +1,137 @@
+package Levels;
+
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.geom.Point2D;
+import java.io.PrintWriter;
+import java.net.URL;
+import java.util.ArrayList;
+
+import com.thoughtworks.xstream.XStream;
+
+import entities.Player;
+
+import npcquest.NPCQuest;
+
+public class World {
+	public static Room room;
+	public static ArrayList<ArrayList<Room>> rooms;
+	public static int world_width = 3;
+	public static int world_height = 3;
+	public static Point2D coordinates;
+	
+	public static int num_skulls = 0;
+	
+	public static void init(){		
+		rooms = new ArrayList<ArrayList<Room>>();
+		coordinates = new Point(0, 0);
+		
+		XStream xstream = new XStream();
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		String path = "resources/levels/";
+		for (int i = 0; i < world_height; i++){
+			ArrayList<Room> row = new ArrayList<Room>();
+			for (int j = 0; j < world_width; j++){
+				Room temp_room;
+				String filename = path+"room_"+j+"_"+i+".xml";
+				URL url = loader.getResource(filename);
+				if (url != null)
+					temp_room = (Room)xstream.fromXML(url);
+				else temp_room = new Room();
+				row.add(temp_room);
+			}
+			rooms.add(row);
+		}
+		
+		room = rooms.get((int)coordinates.getY()).get((int)coordinates.getX());
+	}
+	
+	public static void NewGame(){
+		for (int i = 0; i < world_height; i++){
+			for (int j = 0; j < world_width; j++){
+				rooms.get(i).get(j).Restart();
+			}
+		}
+		num_skulls = 0;
+	}
+	
+	public static void Update(){
+		room.Update();
+		
+		boolean change_room = false;
+		if (room.player.x+room.player.rb/2 < 0){ //OFFSCREEN LEFT
+			change_room = true;
+			int x = (int)coordinates.getX();
+			x--;
+			if (x < 0) x = world_width-1;
+			coordinates.setLocation(x, coordinates.getY());
+			room.player.x = room.MAP_WIDTH*Tile.WIDTH - 16;
+		}else if (room.player.x+room.player.rb/2 > room.MAP_WIDTH*Tile.WIDTH){
+			change_room = true;
+			int x = (int)coordinates.getX();
+			x++;
+			if (x >= world_width) x = 0;
+			coordinates.setLocation(x, coordinates.getY());
+		}
+		
+		if (change_room){
+			Player player = room.player;
+			room = rooms.get((int)coordinates.getY()).get((int)coordinates.getX());
+			room.player.facing = player.facing;
+			room.player.whatdidisay = player.whatdidisay;
+			room.player.voice = player.voice;
+			room.player.x = player.x;
+			room.player.y = player.y;
+		}
+	}
+	
+	public static void Render(Graphics2D g2d){
+		room.Render(g2d);
+	}
+
+	public static void MouseClicked(MouseEvent e){
+		int tilex = e.getX() / (NPCQuest.VIEW_SCALE*Tile.WIDTH);
+		int tiley = (e.getY()-26) / (NPCQuest.VIEW_SCALE*Tile.HEIGHT);
+		
+		room.MouseClicked(tilex, tiley);
+	}
+	
+	/***THESE TWO FUNCTIONS ARE FOR LEVEL EDITING ONLY***/
+	/***THEY SHOULD NOT BE USED FOR SAVING***/
+	public static void Export(){
+		System.out.println("begin export");
+		String path = "D:/cake/code/android/dev/NPCQuest/src/resources/levels/";
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(path+"room.xml", "UTF-8");
+			writer.println(room.Export());
+			writer.close();
+			System.out.println("success");
+		} catch (Exception e) {
+			System.out.println("failure");
+			e.printStackTrace();
+		}
+	}
+	
+	public static void ExportWorld(){
+		System.out.println("begin world export");
+		String path = "D:/cake/code/android/dev/NPCQuest/src/resources/levels/";
+		PrintWriter writer;
+		
+		for (int i = 0; i < world_height; i++){
+			for (int j = 0; j < world_width; j++){
+				try{
+					Room temp_room = rooms.get(i).get(j);
+					writer = new PrintWriter(path+"room_"+j+"_"+i+".xml");
+					writer.println(temp_room.Export());
+					writer.close();
+				}catch(Exception e){
+					System.out.println("failure");
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println("success?");
+	}
+}

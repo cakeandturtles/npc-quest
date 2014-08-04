@@ -22,6 +22,8 @@ public class GameWindow extends JPanel implements Runnable{
 		KeyManager.init();
 		ResourceManager.init();
 		World.init();
+		
+		World.NewGame();
 	}
 	
 	public void addNotify(){
