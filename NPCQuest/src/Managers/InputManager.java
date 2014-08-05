@@ -20,9 +20,12 @@ public class InputManager {
 				World.ExportWorld();
 			}
 			
-			if (KeyManager.keys_pressed.containsKey(KeyEvent.VK_C)){
-				World.ColorCycle();
-			}
+			if (KeyManager.keys_pressed.containsKey(KeyEvent.VK_C))
+				room.ColorCycle();
+			if (KeyManager.keys_pressed.containsKey(KeyEvent.VK_D))
+				World.DayTime();
+			if (KeyManager.keys_pressed.containsKey(KeyEvent.VK_N))
+				World.NightTime();
 		}
 		
 		if (!room.speaking){

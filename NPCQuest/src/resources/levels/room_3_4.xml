@@ -1,4 +1,5 @@
 <Levels.Room>
+  <color__index>0</color__index>
   <MAP__WIDTH>10</MAP__WIDTH>
   <MAP__HEIGHT>9</MAP__HEIGHT>
   <camera>
@@ -14,8 +15,8 @@
     <speed>1.5</speed>
   </camera>
   <spoken__text></spoken__text>
-  <is__speaker__player>false</is__speaker__player>
-  <speech__timer>0</speech__timer>
+  <is__speaker__player>true</is__speaker__player>
+  <speech__timer>27</speech__timer>
   <speech__time__limit>30</speech__time__limit>
   <speaking>false</speaking>
   <speaker__id>0</speaker__id>
@@ -39,9 +40,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -59,9 +60,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -79,9 +80,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -99,9 +100,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -119,9 +120,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -139,9 +140,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -159,9 +160,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -179,9 +180,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -199,9 +200,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -219,9 +220,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
     </list>
     <list>
@@ -241,9 +242,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -261,9 +262,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -303,7 +304,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -323,7 +324,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -343,7 +344,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -363,7 +364,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -383,7 +384,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -403,7 +404,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -423,7 +424,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
     </list>
     <list>
@@ -443,9 +444,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -465,7 +466,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -485,7 +486,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -505,7 +506,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -525,7 +526,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -545,7 +546,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -583,9 +584,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -603,9 +604,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -625,7 +626,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
     </list>
     <list>
@@ -645,9 +646,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -687,7 +688,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -705,9 +706,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -727,7 +728,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -747,7 +748,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -767,7 +768,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -785,9 +786,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -805,9 +806,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -827,7 +828,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
     </list>
     <list>
@@ -847,9 +848,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -869,7 +870,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -889,7 +890,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -909,7 +910,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -929,7 +930,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -949,7 +950,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -989,7 +990,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1009,7 +1010,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1029,7 +1030,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
     </list>
     <list>
@@ -1049,9 +1050,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1071,7 +1072,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1131,7 +1132,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1151,7 +1152,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1171,7 +1172,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1191,7 +1192,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1211,7 +1212,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1231,7 +1232,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
     </list>
     <list>
@@ -1251,9 +1252,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1271,9 +1272,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1293,7 +1294,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1351,9 +1352,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1371,9 +1372,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1393,7 +1394,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1413,7 +1414,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1433,7 +1434,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
     </list>
     <list>
@@ -1453,9 +1454,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1473,9 +1474,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1495,7 +1496,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1515,7 +1516,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1535,7 +1536,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1553,9 +1554,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1573,9 +1574,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1615,7 +1616,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1635,7 +1636,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
     </list>
     <list>
@@ -1655,9 +1656,9 @@
         <export__me>true</export__me>
         <solid>false</solid>
         <z__index>0</z__index>
-        <collision>0</collision>
-        <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <collision>1</collision>
+        <tileset__x>1</tileset__x>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1677,7 +1678,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1697,7 +1698,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>1</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1717,7 +1718,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1737,7 +1738,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1757,7 +1758,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1797,7 +1798,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1817,7 +1818,7 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
       <Levels.Tile>
         <type>Tile</type>
@@ -1837,20 +1838,20 @@
         <z__index>0</z__index>
         <collision>0</collision>
         <tileset__x>0</tileset__x>
-        <tileset__y>0</tileset__y>
+        <tileset__y>2</tileset__y>
       </Levels.Tile>
     </list>
   </tiles>
   <player>
     <type>Player</type>
-    <x>72.0</x>
-    <y>96.0</y>
+    <x>0.0</x>
+    <y>88.12997</y>
     <original__x>72</original__x>
     <original__y>96</original__y>
-    <lb>2</lb>
-    <tb>2</tb>
-    <rb>14</rb>
-    <bb>14</bb>
+    <lb>0</lb>
+    <tb>0</tb>
+    <rb>16</rb>
+    <bb>16</bb>
     <width>12</width>
     <height>12</height>
     <delete__me>false</delete__me>
@@ -1859,14 +1860,14 @@
     <z__index>0</z__index>
     <img__name>player_sheet</img__name>
     <animation>
-      <max__frame>1</max__frame>
+      <max__frame>2</max__frame>
       <curr__frame>0</curr__frame>
-      <frame__count>0</frame__count>
-      <frame__delay>16</frame__delay>
+      <frame__count>3</frame__count>
+      <frame__delay>8</frame__delay>
       <frame__width>16</frame__width>
       <frame__height>16</frame__height>
       <rel__ani__x>0</rel__ani__x>
-      <rel__ani__y>0</rel__ani__y>
+      <rel__ani__y>1</rel__ani__y>
       <abs__ani__x>0</abs__ani__x>
       <abs__ani__y>0</abs__ani__y>
       <x__offset>0</x__offset>
@@ -1878,10 +1879,10 @@
     <visible>true</visible>
     <opacity>1.0</opacity>
     <prev class="java.awt.geom.Point2D$Float">
-      <x>72.0</x>
-      <y>96.0</y>
+      <x>152.33995</x>
+      <y>88.12997</y>
     </prev>
-    <max__run__vel>2.0</max__run__vel>
+    <max__run__vel>1.4</max__run__vel>
     <run__acc>0.67</run__acc>
     <run__dec>0.67</run__dec>
     <horizontal__input>false</horizontal__input>
@@ -1889,19 +1890,22 @@
     <horizontal__collision>false</horizontal__collision>
     <vertical__collision>false</vertical__collision>
     <vel class="java.awt.geom.Point2D$Float">
-      <x>0.0</x>
+      <x>1.4</x>
       <y>0.0</y>
     </vel>
-    <move__state>0</move__state>
-    <prev__move__state>0</prev__move__state>
-    <facing>13</facing>
+    <move__state>1</move__state>
+    <prev__move__state>1</prev__move__state>
+    <facing>11</facing>
     <original__facing>13</original__facing>
     <npc__id>0</npc__id>
     <whatdidisay>...</whatdidisay>
     <speaking>false</speaking>
     <fade__away>false</fade__away>
     <voice></voice>
+    <fade__time>0</fade__time>
+    <fade__time__limit>30</fade__time__limit>
     <try__interact>false</try__interact>
+    <try__cancel>false</try__cancel>
   </player>
   <entities/>
 </Levels.Room>

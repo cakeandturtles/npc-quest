@@ -25,11 +25,17 @@ public class ResourceManager {
 			"tilesheet"
 		};
 		String[] sound_names = {
-			"ghost_voice",
+			"learn",
 			"forget",
+			"skull_voice",
 			"pox_voice",
 			"tree_voice",
-			"skull_voice"
+			"owl_voice",
+			"bird_voice",
+			"robot_voice",
+			"growl_voice",
+			"meow_voice",
+			"tinymeow_voice"
 		};
 		
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();

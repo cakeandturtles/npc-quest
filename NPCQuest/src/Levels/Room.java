@@ -16,9 +16,12 @@ import npcquest.NPCQuest;
 
 import entities.GameObject;
 import entities.GameSprite;
+import entities.NPC;
 import entities.Player;
 
-public class Room {	
+public class Room {
+	public int color_index = 0;
+	
 	public int MAP_WIDTH;
 	public int MAP_HEIGHT;
 	public Camera camera;
@@ -58,22 +61,12 @@ public class Room {
 		}
 	}
 	
-	public void InitializeTiles(){
-		tiles = new ArrayList<ArrayList<Tile>>();
-		for (int i = 0; i < MAP_HEIGHT; i++){
-			ArrayList<Tile> row = new ArrayList<Tile>();
-			for (int j = 0; j < MAP_WIDTH; j++){
-				row.add(new Tile(j * Tile.WIDTH, i * Tile.HEIGHT, Tile.GHOST, 0, 0));
-			}
-			tiles.add(row);
+	public void ColorCycle(){
+		color_index++;
+		if (color_index >= NPCQuest.PALETTES.length){
+			color_index = 0;
 		}
-	}
-	
-	public boolean isValidTile(int i, int j){
-		return !(i < 0 || i >= tiles.size() || j < 0 || j >= tiles.get(i).size());
-	}
-	
-	public void ColorCycle(int color_index){
+
 		player.animation.abs_ani_x = color_index*(4*16);
 		for (int i = 0; i < entities.size(); i++){
 			try{
@@ -90,6 +83,21 @@ public class Room {
 					tiles.get(i).get(j).tileset_x = (color_index*2)+1;
 			}
 		}
+	}
+	
+	public void InitializeTiles(){
+		tiles = new ArrayList<ArrayList<Tile>>();
+		for (int i = 0; i < MAP_HEIGHT; i++){
+			ArrayList<Tile> row = new ArrayList<Tile>();
+			for (int j = 0; j < MAP_WIDTH; j++){
+				row.add(new Tile(j * Tile.WIDTH, i * Tile.HEIGHT, Tile.GHOST, 0, 0));
+			}
+			tiles.add(row);
+		}
+	}
+	
+	public boolean isValidTile(int i, int j){
+		return !(i < 0 || i >= tiles.size() || j < 0 || j >= tiles.get(i).size());
 	}
 	
 	public void Update(){
@@ -112,7 +120,9 @@ public class Room {
 	}
 	
 	public void Render(Graphics2D g2d){
-		g2d.setBackground(World.COLOR_ZERO);
+		Color COLOR_ZERO = NPCQuest.PALETTES[color_index][0];
+		
+		g2d.setBackground(COLOR_ZERO);
 		g2d.clearRect(0, 0, NPCQuest.GAME_WIDTH, NPCQuest.GAME_HEIGHT);
 		
 		//DRAW THE TILES OF THE ROOM
@@ -160,6 +170,11 @@ public class Room {
 	}
 	
 	public void RenderSpeech(Graphics2D g2d){
+		Color COLOR_ZERO = NPCQuest.PALETTES[color_index][0];
+		Color COLOR_ONE = NPCQuest.PALETTES[color_index][1];
+		Color COLOR_TWO = NPCQuest.PALETTES[color_index][2];
+		Color COLOR_THREE = NPCQuest.PALETTES[color_index][3];
+		
 		if (!paused){
 			if (!speaking || spoken_text == null || spoken_text.length() == 0) return;
 		}
@@ -171,9 +186,9 @@ public class Room {
 		if (paused)
 			y = NPCQuest.GAME_HEIGHT/2 - h;
 		//DRAWR THE BORDER
-		Color borderBGColor = World.COLOR_THREE;
-		if (is_speaker_player) borderBGColor = World.COLOR_TWO;
-		Color borderColor = World.COLOR_ONE;
+		Color borderBGColor = COLOR_THREE;
+		if (is_speaker_player) borderBGColor = COLOR_TWO;
+		Color borderColor = COLOR_ONE;
 		g2d.setBackground(borderBGColor);
 		g2d.clearRect(8, y+8, NPCQuest.GAME_WIDTH - 16, h);
 		g2d.setBackground(borderColor);
@@ -182,10 +197,10 @@ public class Room {
 		g2d.clearRect(10, y+10, NPCQuest.GAME_WIDTH - 20, h-4);
 		
 		//DRAWR THE PORTRAIT
-		g2d.setBackground(World.COLOR_ZERO);
+		g2d.setBackground(COLOR_ZERO);
 		g2d.clearRect(12, y+12, 16, 16);
 		int row = 2*speaker_id;
-		int column = World.color_index * 4;
+		int column = color_index * 4;
 		int dx = (int)Math.round(12-camera.x+camera.screen_offset_x);
 		int dy = (int)Math.round(y+12-camera.y+camera.screen_offset_y);
 		int sx = 16*column;
@@ -199,7 +214,7 @@ public class Room {
 		//DRAWR THE TEXT
 		String[] text = spoken_text.split("\n");
 		int fs = 5;
-		g2d.setColor(World.COLOR_ZERO);
+		g2d.setColor(COLOR_ZERO);
 		g2d.setFont(new Font(Font.MONOSPACED, Font.PLAIN, fs));
 		for (int i = 0; i < text.length; i++){
 			g2d.drawString(text[i], 32, y+16+(i*fs));
@@ -209,13 +224,50 @@ public class Room {
 		if (speech_timer >= Math.round(speech_time_limit/2.0)){
 			if (paused)
 				g2d.drawString("ENTR", NPCQuest.GAME_WIDTH - 28, y+28);
-			else g2d.drawString("X", NPCQuest.GAME_WIDTH - 16, y+28);
+			else{
+				if (World.num_skulls < 1 || is_speaker_player)
+					g2d.drawString("X", NPCQuest.GAME_WIDTH - 16, y+28);
+				else{
+					g2d.drawString("X - CPY", NPCQuest.GAME_WIDTH - 32, y+28);
+				}
+			}
 		}
 	}
 	
 	/***********************************MOUSE CLICK LEVEL EDIT STUFF*************/
 	public void MouseClicked(int tilex, int tiley, int clickType){
-		if (clickType == 1){
+		if (clickType == 1 || clickType == 3){
+			int qx = Tile.WIDTH/2;
+			int qy = Tile.HEIGHT/2;
+			NPC npc = null;
+			for (int i = 0; i < entities.size(); i++){
+				if (entities.get(i).type.equals("NPC")){
+					NPC temp_npc = (NPC)entities.get(i);
+					if (tilex*qx >= temp_npc.x && tilex*qx <= temp_npc.x+temp_npc.rb &&
+							tiley*qy >= temp_npc.y && tiley*qy <= temp_npc.y+temp_npc.bb){
+						npc = temp_npc;
+					}
+				}
+			}
+			if (clickType == 1){
+				if (npc == null){
+					npc = new NPC(tilex*qx, tiley*qy, 0, NPC.GetVoice(0));
+					entities.add(npc);
+				}else{
+					npc.npc_id++;
+					if (npc.npc_id > NPC.MAX_NPCS){
+						npc.npc_id = 0;
+					}
+					npc.animation.abs_ani_y = 2*npc.npc_id*npc.animation.frame_height;
+					npc.voice = NPC.GetVoice(npc.npc_id);
+				}
+				npc.visible = true;
+				npc.fade_away = false;
+			}else if (npc != null){
+				npc.delete_me = true;
+				return;
+			}
+			
 		}else{
 			Tile tile = tiles.get(tiley).get(tilex);
 			boolean cycle = false;
@@ -232,7 +284,7 @@ public class Room {
 			}
 			
 			if (cycle){
-				int max = 2;
+				int max = 3;
 				tile.tileset_y++;
 				if (tile.tileset_y >= max){
 					tile.tileset_y = 0;

@@ -1,8 +1,8 @@
 package Levels;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.io.PrintWriter;
@@ -11,19 +11,15 @@ import java.util.ArrayList;
 
 import javax.swing.SwingUtilities;
 
+import Managers.KeyManager;
+
 import com.thoughtworks.xstream.XStream;
 
 import entities.Player;
 
 import npcquest.NPCQuest;
 
-public class World {
-	public static int color_index = 0;
-	public static Color COLOR_ZERO = NPCQuest.COLOR_ZERO;
-	public static Color COLOR_ONE = NPCQuest.COLOR_ONE;
-	public static Color COLOR_TWO = NPCQuest.COLOR_TWO;
-	public static Color COLOR_THREE = NPCQuest.COLOR_THREE;
-	
+public class World {	
 	public static Room room;
 	public static ArrayList<ArrayList<Room>> rooms;
 	public static int world_width = 5;
@@ -63,6 +59,32 @@ public class World {
 			}
 		}
 		num_skulls = 0;
+	}
+	
+	public static void DayTime(){
+		for (int i = 0; i < world_height; i++){
+			for (int j = 0; j < world_width; j++){
+				Room temp_room = rooms.get(i).get(j);
+				if (temp_room.color_index == 2)
+					temp_room.color_index = -1;
+				else if (temp_room.color_index == 3)
+					temp_room.color_index = 0;
+				temp_room.ColorCycle();
+			}
+		}
+	}
+	
+	public static void NightTime(){
+		for (int i = 0; i < world_height; i++){
+			for (int j = 0; j < world_width; j++){
+				Room temp_room = rooms.get(i).get(j);
+				if (temp_room.color_index == 0)
+					temp_room.color_index = 1;
+				else if (temp_room.color_index == 1)
+					temp_room.color_index = 2;
+				temp_room.ColorCycle();
+			}
+		}
 	}
 	
 	public static void Update(){
@@ -121,31 +143,19 @@ public class World {
 	public static void Render(Graphics2D g2d){
 		room.Render(g2d);
 	}
-	
-	public static void ColorCycle(){
-		color_index++;
-		if (color_index >= NPCQuest.PALETTES.length){
-			color_index = 0;
-		}
-		COLOR_ZERO = NPCQuest.PALETTES[color_index][0];
-		COLOR_ONE = NPCQuest.PALETTES[color_index][1];
-		COLOR_TWO = NPCQuest.PALETTES[color_index][2];
-		COLOR_THREE = NPCQuest.PALETTES[color_index][3];
-		
-		for (int i = 0; i < world_height; i++){
-			for (int j = 0; j < world_width; j++){
-				rooms.get(i).get(j).ColorCycle(color_index);
-			}
-		}
-	}
 
 	public static void MouseClicked(MouseEvent e){
 		int tilex = e.getX() / (NPCQuest.VIEW_SCALE*Tile.WIDTH);
 		int tiley = (e.getY()-26) / (NPCQuest.VIEW_SCALE*Tile.HEIGHT);
-		if (SwingUtilities.isLeftMouseButton(e))
-			room.MouseClicked(tilex, tiley, 0);
-		else if (SwingUtilities.isMiddleMouseButton(e))
+		if (KeyManager.keys_down.containsKey(KeyEvent.VK_V)){
+			tilex = e.getX() / (NPCQuest.VIEW_SCALE*(Tile.WIDTH/2));
+			tiley = (e.getY()-26) / (NPCQuest.VIEW_SCALE*(Tile.HEIGHT/2));
+			if (SwingUtilities.isRightMouseButton(e))
+				room.MouseClicked(tilex, tiley, 3);
 			room.MouseClicked(tilex, tiley, 1);
+		}
+		else if (SwingUtilities.isLeftMouseButton(e))
+			room.MouseClicked(tilex, tiley, 0);
 		else if (SwingUtilities.isRightMouseButton(e))
 			room.MouseClicked(tilex, tiley, 2);
 	}

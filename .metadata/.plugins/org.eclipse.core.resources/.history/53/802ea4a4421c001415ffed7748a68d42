@@ -1,0 +1,40 @@
+package entities.helpers;
+
+public class Txt {
+	public static final String ONE_SKULL = "Power of speech skull fills you.\nPress X to copy words.\nPress Z to ignore them.";
+	
+	public static final String ELLIPSE = "..."; 
+	public static final String COPYING = "Stop copying me!";
+	public static final String WARTKISS = "A kiss from the pox wart...";
+	public static final String DESIRE = "What do you want?!";
+	public static final String INQUIRY = "Then what is it!?";
+	public static final String GRATITUDE = "...Thank you...";
+	public static final String CONFIDENCE = "I know what I want.";
+	public static final String NO_TIME = "We don't have much time left.";
+	
+	public static String PoxWartSpeak(String initiator){
+		if (initiator.equals(Txt.DESIRE))
+			return Txt.COPYING;
+		if (initiator.equals(Txt.WARTKISS))
+			return Txt.GRATITUDE;
+		if (initiator.equals(Txt.CONFIDENCE))
+			return Txt.INQUIRY;
+		
+		return Txt.DESIRE;
+	}
+	
+	public static String TreeSpeak(String initiator){
+		if (initiator.equals(Txt.DESIRE) || initiator.equals(Txt.INQUIRY))
+			return Txt.WARTKISS;
+		if (initiator.equals(Txt.CONFIDENCE))
+			return Txt.ELLIPSE;
+		if (initiator.equals(Txt.WARTKISS))
+			return Txt.COPYING;
+
+		return Txt.CONFIDENCE;
+	}
+	
+	public static String CatSpeak(String initiator){
+		return Txt.NO_TIME;
+	}
+}

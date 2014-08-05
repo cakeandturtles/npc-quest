@@ -15,7 +15,7 @@ import Managers.KeyManager;
 public class NPCQuest extends JFrame{
 	public static final int GAME_WIDTH = 160;
 	public static final int GAME_HEIGHT = 144;
-	public static final int VIEW_SCALE = 4;
+	public static final int VIEW_SCALE = 3;
 	
 	public static Color[][] PALETTES;
 	public static Color COLOR_ZERO;
@@ -60,10 +60,10 @@ public class NPCQuest extends JFrame{
 		}
 		
 		PALETTES = new Color[][]{
-			{new Color(245,224,199), new Color(232,164,108), new Color(218,83,2), new Color(123,58,74)}, //SUNRISE
-			{new Color(234,216,230), new Color(148,190,194), new Color(96,71,167), new Color(0,64,70)}, //MIDDAY
-			{new Color(187, 179, 209), new Color(154,148,194), new Color(38,104,118), new Color(96,52,148)}, //SUNSET
-			{new Color(21,39,25), new Color(107,65,61), new Color(159,184,88), new Color(255,191,185)} //TWILIGHT
+			{new Color(245,224,199), new Color(247,128,152), new Color(218,83,2), new Color(123,58,74)}, 
+			{new Color(234,216,230), new Color(148,190,194), new Color(96,71,167), new Color(0,64,70)}, 
+			{new Color(10, 31, 56), new Color(8,127,103), new Color(67,183,253), new Color(203,197,104)}, 
+			{new Color(21,39,25), new Color(107,65,61), new Color(159,184,88), new Color(255,191,185)} 
 		};
 		
 		COLOR_ZERO = PALETTES[1][0];

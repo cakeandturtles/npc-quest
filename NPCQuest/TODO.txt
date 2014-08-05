@@ -2,14 +2,8 @@ NPC Quest:
 
 TODO::
 -----------------------------------------------------------------------------------
-1. Make day/night cycle (reset with World.NewGame()) -> time and day variables
-	WORLDCOLORCYCLE instead of room
-
-	-Green is midday, purple is sunset, dark is night, orange is sunrise
-	-no watch UI, time doesn't pass when the room is PAUSED
-	-after 3-5 days, game over
-		-STATS (see npc stuff below)
-2. Make town tileset.
+1. AFTER GETTING THE FIRST SKULL, all the NPCS are moved to different locations in the map
+	-have World array that keeps track of all the individual NPCs (sans uh skulls)
 3. Speech sequences (for skulls)
 4. MORE NPCS!!!!
 	-NPCs have moods :) :( >:( :|
@@ -20,7 +14,9 @@ TODO::
 		-"What is the point of me saying this?"
 	-e.x.::
 		-talkative girl from MOTHER 3, roof guy from Anodyne
+		-(I hope when you die you get to see your stats like how many times you laughed or told a lie or kissed or how many people loved you and how many people hated you and what you meant to people)
 2. IMplement saving
+3. language translations from Txt
 
 
 ===================================================================================
@@ -36,7 +32,7 @@ Mechanic:-:
 
 Goal:-: To collect the skulls of speech and fight the NPC dialogue boss?
 	1- Gain the copy word ability
-	2- 
+	2- A second memory for replies...?
 	3- 
 
 Themes:-: Solipsism, Memetic Transmission, Communication and Loneliness

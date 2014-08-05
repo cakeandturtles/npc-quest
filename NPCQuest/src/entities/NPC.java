@@ -7,13 +7,28 @@ import Managers.ResourceManager;
 
 public class NPC extends GameMover{
 	public int npc_id;
+	public final static int MAX_NPCS = 6;
 	public String whatdidisay = "";
 	public boolean speaking = false;
 	public boolean fade_away = false;
 	public String voice = "talk_next";
+	public int fade_time = 0;
+	public int fade_time_limit = 120;
+	
+	public static String GetVoice(int npc_id){
+		switch (npc_id){
+			case 0: default: return "skull_voice";
+			case 1: return "pox_voice";
+			case 2: return "tree_voice";
+			case 3: return "owl_voice";
+			case 4: return "bird_voice";
+			case 5: return "meow_voice";
+			case 6: return "tinymeow_voice";
+		}
+	}
 	
 	public NPC(float x, float y, int npc_id, String voice){
-		super(x, y, 2, 2, 14, 14, "npc_sheet");
+		super(x, y, 0, 0, 16, 16, "npc_sheet");
 		type = "NPC";
 		solid = true;
 		this.npc_id = npc_id;
@@ -23,7 +38,7 @@ public class NPC extends GameMover{
 	}
 	
 	public NPC(float x, float y, int npc_id, String voice, String img_name){
-		super(x, y, 2, 2, 14, 14, img_name);
+		super(x, y, 0, 0, 16, 16, img_name);
 		type = "NPC";
 		solid = true;
 		this.npc_id = npc_id;
@@ -34,6 +49,11 @@ public class NPC extends GameMover{
 	
 	@Override
 	public void Restart(){
+		lb = 0;
+		tb = 0;
+		rb = 16;
+		bb = 16;
+		
 		opacity = 1.0f;
 		fade_away = false;
 		visible = true;
@@ -48,9 +68,15 @@ public class NPC extends GameMover{
 	
 	@Override
 	public void Update(Room room){
+		fade_time_limit = 30;
 		if (fade_away){
-			opacity-=0.02f;
-			if (opacity < 0.0f){
+			fade_time++;
+			if (fade_time%5==0){
+				visible = !visible;
+			}
+			if (fade_time >= fade_time_limit){
+				fade_away = false;
+				fade_time = 0;
 				visible = false;
 				solid = false;
 			}
@@ -64,6 +90,7 @@ public class NPC extends GameMover{
 		whatdidisay = speech;
 		room.Speak(speech, npc_id, false);
 		
+		voice = NPC.GetVoice(npc_id);
 		ResourceManager.playSound(voice);
 	}
 	
@@ -85,33 +112,13 @@ public class NPC extends GameMover{
 				if (World.num_skulls == 0)
 					return Txt.ONE_SKULL;
 			case 1:
-				return PoxWartSpeak(initiator);
+				return Txt.PoxWartSpeak(initiator);
 			case 2:
-				return TreeSpeak(initiator);
+				return Txt.TreeSpeak(initiator);
+			case 3:
+				return Txt.CatSpeak(initiator);
 			default:
 				return "undefined";
 		}
-	}
-	
-	public String PoxWartSpeak(String initiator){
-		if (initiator.equals(Txt.DESIRE))
-			return Txt.COPYING;
-		if (initiator.equals(Txt.WARTKISS))
-			return Txt.GRATITUDE;
-		if (initiator.equals(Txt.CONFIDENCE))
-			return Txt.INQUIRY;
-		
-		return Txt.DESIRE;
-	}
-	
-	public String TreeSpeak(String initiator){
-		if (initiator.equals(Txt.DESIRE) || initiator.equals(Txt.INQUIRY))
-			return Txt.WARTKISS;
-		if (initiator.equals(Txt.CONFIDENCE))
-			return Txt.ELLIPSE;
-		if (initiator.equals(Txt.WARTKISS))
-			return Txt.COPYING;
-
-		return Txt.CONFIDENCE;
 	}
 }

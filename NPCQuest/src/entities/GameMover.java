@@ -15,7 +15,7 @@ public class GameMover extends GameSprite{
 	public final static int RUNNING = 1;
 	
 	public Point2D prev;
-	public float max_run_vel = 2.0f;
+	public float max_run_vel = 1.0f;
 	public float run_acc = 0.67f;
 	public float run_dec = 0.67f;
 	public boolean horizontal_input = false;
